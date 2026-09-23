@@ -109,7 +109,7 @@
 
     <!-- AUDIO BACKSOUND -->
     <audio id="bgMusic" loop>
-        <source id="audioSource" src="https://files.freemusicarchive.org/storage-freemusicarchive-org/music/ccCommunity/Kevin_MacLeod/In_The_Field/Kevin_MacLeod_-_The_Ice_Giant.mp3" type="audio/mpeg">
+        <source id="audioSource" src="" type="audio/mpeg">
     </audio>
 
     <!-- TOMBOL KONTROL MUSIK MELAYANG -->
@@ -223,7 +223,7 @@
 
             <!-- TAB 1: BERANDA & WIFI -->
             <div id="tabBeranda" class="admin-tab-content active">
-                <div class="section-title">Atur Jaringan Wi-Fi & Musik Backsound</div>
+                <div class="section-title">Atur Jaringan Wi-Fi & Musik Backsound MP3</div>
                 <div class="card-box">
                     <div class="form-group">
                         <label style="font-size: 11px; font-weight: 700;">Nama SSID Wi-Fi:</label>
@@ -234,8 +234,9 @@
                         <input type="text" id="editPass" class="form-input" placeholder="Password Wi-Fi">
                     </div>
                     <div class="form-group">
-                        <label style="font-size: 11px; font-weight: 700;">Link Audio Backsound (URL MP3):</label>
-                        <input type="text" id="editAudioUrl" class="form-input" placeholder="https://domain.com/musik.mp3">
+                        <label style="font-size: 11px; font-weight: 700;">Upload File Backsound (.mp3):</label>
+                        <input type="file" id="editAudioFile" accept="audio/mp3, audio/mpeg" class="form-input">
+                        <p style="font-size: 10px; color: var(--text-muted); margin-top: 4px;">Pilih file musik mp3 dari perangkat Anda.</p>
                     </div>
                     <div class="form-group">
                         <label style="font-size: 11px; font-weight: 700;">Upload & Atur Posisi QR Code:</label>
@@ -399,7 +400,7 @@
     function inisialisasiAudio() {
         const music = document.getElementById('bgMusic');
         music.volume = 0.15; 
-        if (!isMusicPlaying) {
+        if (!isMusicPlaying && music.src) {
             music.play().then(() => {
                 isMusicPlaying = true;
                 document.getElementById('musicToggleBtn').innerText = "🔊";
@@ -429,10 +430,9 @@
         if (doc.exists) {
             configData = doc.data();
             if(configData.adminPin) currentAdminPin = configData.adminPin;
-            if(configData.audioUrl) {
+            if(configData.audioData) {
                 const audio = document.getElementById('bgMusic');
-                const source = document.getElementById('audioSource');
-                source.src = configData.audioUrl;
+                audio.src = configData.audioData;
                 audio.load();
             }
         } else {
@@ -442,7 +442,7 @@
                 promoImg: "https://via.placeholder.com/400x180/d32f2f/ffffff?text=Promo",
                 gmaps: "https://maps.google.com", ig: "https://instagram.com", tiktok: "https://tiktok.com",
                 adminPin: "1624",
-                audioUrl: "https://files.freemusicarchive.org/storage-freemusicarchive-org/music/ccCommunity/Kevin_MacLeod/In_The_Field/Kevin_MacLeod_-_The_Ice_Giant.mp3"
+                audioData: ""
             };
             db.collection("settings").doc("portalConfig").set(configData);
         }
@@ -474,7 +474,6 @@
         document.getElementById('displayIG').href = configData.ig || '#';
         document.getElementById('displayTikTok').href = configData.tiktok || '#';
 
-        if(document.getElementById('editAudioUrl')) document.getElementById('editAudioUrl').value = configData.audioUrl || '';
         if(document.getElementById('previewQR')) document.getElementById('previewQR').src = configData.qr || 'qr-wifi.jpg';
         if(document.getElementById('previewHeaderLogo')) document.getElementById('previewHeaderLogo').src = configData.headerLogo || '';
         if(document.getElementById('previewPromoImg')) document.getElementById('previewPromoImg').src = configData.promoImg || '';
@@ -704,20 +703,42 @@
     function simpanWifiDanAudio() {
         const ssid = document.getElementById('editSSID').value;
         const pass = document.getElementById('editPass').value;
-        const audioUrl = document.getElementById('editAudioUrl').value;
-        const f = document.getElementById('editQRFile').files[0];
+        const audioFile = document.getElementById('editAudioFile').files[0];
+        const qrFile = document.getElementById('editQRFile').files[0];
         
-        const updateData = { ssid, pass, audioUrl };
-        
-        if(f){
-            const r = new FileReader();
-            r.onload = e => {
-                updateData.qr = e.target.result;
-                db.collection("settings").doc("portalConfig").update(updateData).then(()=>alert("Pengaturan Beranda & Audio Diperbarui!"));
+        const updateData = { ssid, pass };
+
+        const executeSave = () => {
+            db.collection("settings").doc("portalConfig").update(updateData).then(() => {
+                alert("Pengaturan Beranda & Audio Berhasil Disimpan!");
+            });
+        };
+
+        if (audioFile) {
+            const reader = new FileReader();
+            reader.onload = e => {
+                updateData.audioData = e.target.result;
+                if (qrFile) {
+                    const qrReader = new FileReader();
+                    qrReader.onload = eqr => {
+                        updateData.qr = eqr.target.result;
+                        executeSave();
+                    };
+                    qrReader.readAsDataURL(qrFile);
+                } else {
+                    executeSave();
+                }
             };
-            r.readAsDataURL(f);
+            reader.readAsDataURL(audioFile);
+        } else if (qrFile) {
+            const qrReader = new FileReader();
+            qrReader.onload = eqr => {
+                updateData.qr = eqr.target.result;
+                executeSave();
+            };
+            qrReader.readAsDataURL(qrFile);
         } else {
-            db.collection("settings").doc("portalConfig").update(updateData).then(()=>alert("Pengaturan Beranda & Audio Diperbarui!"));
+            executeSave();
         }
     }
     function simpanLink() {
