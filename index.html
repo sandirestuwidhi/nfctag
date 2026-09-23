@@ -396,6 +396,7 @@
     let configData = {};
     let currentAdminPin = "1624";
     let isMusicPlaying = false;
+    let isInitialLoaded = false;
 
     function inisialisasiAudio() {
         const music = document.getElementById('bgMusic');
@@ -432,8 +433,10 @@
             if(configData.adminPin) currentAdminPin = configData.adminPin;
             if(configData.audioData) {
                 const audio = document.getElementById('bgMusic');
-                audio.src = configData.audioData;
-                audio.load();
+                if(audio.src !== configData.audioData) {
+                    audio.src = configData.audioData;
+                    audio.load();
+                }
             }
         } else {
             configData = {
@@ -447,6 +450,7 @@
             db.collection("settings").doc("portalConfig").set(configData);
         }
         renderConfigView();
+        isInitialLoaded = true;
     });
 
     db.collection("menus").get().then((snapshot) => {
@@ -681,26 +685,37 @@
     }
 
     function simpanHeaderLogo() {
+        if (!isInitialLoaded) return;
         const f = document.getElementById('editHeaderLogoFile').files[0];
         if(f){ 
             const r = new FileReader(); 
-            r.onload = e => db.collection("settings").doc("portalConfig").update({headerLogo: e.target.result}).then(()=>alert("Logo Berhasil Diperbarui!")); 
+            r.onload = e => {
+                db.collection("settings").doc("portalConfig").set({ headerLogo: e.target.result }, { merge: true })
+                  .then(() => alert("Logo Berhasil Diperbarui!"));
+            }; 
             r.readAsDataURL(f); 
         } else {
             alert("Pilih file gambar logo terlebih dahulu!");
         }
     }
+
     function simpanPromo() {
+        if (!isInitialLoaded) return;
         const f = document.getElementById('editPromoFile').files[0];
         if(f){ 
             const r = new FileReader(); 
-            r.onload = e => db.collection("settings").doc("portalConfig").update({promoImg: e.target.result}).then(()=>alert("Papan Promo Berhasil Diperbarui!")); 
+            r.onload = e => {
+                db.collection("settings").doc("portalConfig").set({ promoImg: e.target.result }, { merge: true })
+                  .then(() => alert("Papan Promo Berhasil Diperbarui!"));
+            }; 
             r.readAsDataURL(f); 
         } else {
             alert("Pilih file gambar promo terlebih dahulu!");
         }
     }
+
     function simpanWifiDanAudio() {
+        if (!isInitialLoaded) return;
         const ssid = document.getElementById('editSSID').value;
         const pass = document.getElementById('editPass').value;
         const audioFile = document.getElementById('editAudioFile').files[0];
@@ -709,7 +724,7 @@
         const updateData = { ssid, pass };
 
         const executeSave = () => {
-            db.collection("settings").doc("portalConfig").update(updateData).then(() => {
+            db.collection("settings").doc("portalConfig").set(updateData, { merge: true }).then(() => {
                 alert("Pengaturan Beranda & Audio Berhasil Disimpan!");
             });
         };
@@ -741,17 +756,21 @@
             executeSave();
         }
     }
+
     function simpanLink() {
-        db.collection("settings").doc("portalConfig").update({
+        if (!isInitialLoaded) return;
+        db.collection("settings").doc("portalConfig").set({
             gmaps: document.getElementById('editGmaps').value,
             ig: document.getElementById('editIG').value,
             tiktok: document.getElementById('editTikTok').value
-        }).then(()=>alert("Link Berhasil Diperbarui!"));
+        }, { merge: true }).then(() => alert("Link Berhasil Diperbarui!"));
     }
+
     function simpanPinBaru() {
+        if (!isInitialLoaded) return;
         const pinBaru = document.getElementById('newAdminPin').value.trim();
         if(!pinBaru) { alert("PIN baru tidak boleh kosong!"); return; }
-        db.collection("settings").doc("portalConfig").update({ adminPin: pinBaru }).then(() => {
+        db.collection("settings").doc("portalConfig").set({ adminPin: pinBaru }, { merge: true }).then(() => {
             alert("PIN Admin berhasil diubah! Gunakan PIN baru ini untuk login berikutnya.");
             document.getElementById('newAdminPin').value = '';
         });
