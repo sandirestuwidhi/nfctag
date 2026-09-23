@@ -31,6 +31,12 @@
         .content { padding: 18px; }
         .section-title { font-size: 13px; font-weight: 800; text-transform: uppercase; letter-spacing: 1px; color: var(--primary); margin-bottom: 10px; text-align: center; }
         .card-box { background: #faf9f7; border: 1px solid var(--border); border-radius: 14px; padding: 16px; margin-bottom: 20px; }
+        
+        /* PAPAN PROMO SUPER MENCOLOK */
+        .promo-highlight-box { background: linear-gradient(135deg, #b71c1c 0%, #d32f2f 100%); border: 3px solid var(--accent); border-radius: 16px; padding: 14px; margin-bottom: 20px; box-shadow: 0 6px 20px rgba(211, 47, 47, 0.35); position: relative; }
+        .promo-badge-alert { background: var(--accent); color: #1a1a1a; font-size: 10px; font-weight: 900; text-transform: uppercase; padding: 3px 10px; border-radius: 20px; display: inline-block; margin-bottom: 8px; letter-spacing: 0.5px; box-shadow: 0 2px 5px rgba(0,0,0,0.2); }
+        .promo-title-flash { font-size: 15px; font-weight: 900; color: #ffffff; text-transform: uppercase; margin-bottom: 10px; text-align: center; letter-spacing: 0.5px; text-shadow: 0 2px 4px rgba(0,0,0,0.3); }
+        
         .review-card-box { background: linear-gradient(135deg, #c62828 0%, #d32f2f 100%); color: #ffffff; border: 2px dashed var(--accent); border-radius: 16px; padding: 16px; margin-bottom: 20px; text-align: center; }
         .voucher-header-text { font-size: 11px; font-weight: 800; color: #ffe082; text-transform: uppercase; margin-bottom: 4px; }
         .voucher-big-value { font-size: 32px; font-weight: 900; color: #ffffff; margin-bottom: 4px; }
@@ -47,7 +53,7 @@
         .qr-wrapper { text-align: center; margin-top: 14px; padding-top: 14px; border-top: 1px solid var(--border); }
         .qr-wrapper img { max-width: 170px; height: auto; border-radius: 8px; border: 1px solid var(--border); }
         .qr-hint { font-size: 11px; color: var(--text-muted); margin-top: 6px; }
-        .promo-img { width: 100%; height: auto; max-height: 250px; border-radius: 10px; object-fit: cover; border: 1px solid var(--border); display: block; }
+        .promo-img { width: 100%; height: auto; max-height: 260px; border-radius: 10px; object-fit: cover; border: 2px solid #ffffff; display: block; }
         .menu-filter { display: flex; gap: 6px; margin-bottom: 12px; overflow-x: auto; padding-bottom: 4px; }
         .filter-chip { padding: 6px 14px; font-size: 11px; border-radius: 20px; border: 1px solid var(--border); background: #ffffff; color: var(--text-muted); cursor: pointer; white-space: nowrap; font-weight: 600; }
         .filter-chip.active { background: var(--primary); color: #ffffff; border-color: var(--primary); }
@@ -62,7 +68,7 @@
         .badge { font-size: 10px; padding: 3px 8px; border-radius: 10px; font-weight: 700; width: 100%; display: block; }
         .badge-success { background: #e8f5e9; color: var(--success); }
         .badge-danger { background: #ffebee; color: var(--danger); }
-        .form-group { margin-bottom: 8px; }
+        .form-group { margin-bottom: 10px; }
         .form-input { width: 100%; padding: 10px; border: 1px solid var(--border); border-radius: 8px; font-size: 12px; outline: none; }
         textarea.form-input { resize: vertical; min-height: 60px; }
         .social-container { display: flex; justify-content: center; gap: 16px; margin-top: 6px; }
@@ -73,18 +79,43 @@
         .brand-white { color: #ffffff; }
         .brand-crv-text { color: #ff3333; font-weight: 900; text-shadow: 0 2px 4px rgba(0, 0, 0, 0.6); }
         .sanrezt-desc { font-size: 12px; line-height: 1.6; color: #f5f5f5; opacity: 0.95; margin-bottom: 20px; }
-        .sanrezt-cta-title { font-size: 13px; font-weight: 800; color: #ffffff; margin-bottom: 6px; }
-        .sanrezt-subtext { font-size: 12px; color: #ffe082; margin-bottom: 8px; font-weight: 700; }
-        .link-wa-text { color: #25d366; font-size: 15px; font-weight: 800; text-decoration: underline; display: inline-block; cursor: pointer; }
-        .copyright-text { text-align: center; font-size: 11px; color: rgba(255,255,255,0.7); margin-top: 24px; padding-top: 14px; border-top: 1px solid rgba(255,255,255,0.15); }
+        .copyright-text { text-align: center; font-size: 11px; color: rgba(255,255,255,0.7); margin-top: 14px; padding-top: 14px; border-top: 1px solid rgba(255,255,255,0.15); }
         .admin-login-link { display: block; margin: 10px auto 0; text-align: center; font-size: 11px; color: #ffe082; text-decoration: underline; font-weight: 700; cursor: pointer; background: none; border: none; width: 100%; }
-        .modal { display: none; position: absolute; top: 0; left: 0; right: 0; bottom: 0; background: #ffffff; z-index: 100; padding: 20px; overflow-y: auto; }
+        
+        /* TOMBOL KONTROL MUSIK MELAYANG */
+        .music-float-btn { position: fixed; bottom: 20px; right: 20px; background: var(--accent); color: #1a1a1a; width: 48px; height: 48px; border-radius: 50%; display: flex; align-items: center; justify-content: center; box-shadow: 0 4px 15px rgba(0,0,0,0.3); cursor: pointer; z-index: 999; font-size: 20px; border: 2px solid #ffffff; transition: transform 0.2s; }
+        .music-float-btn:hover { transform: scale(1.1); }
+
+        /* MODAL FULL LAYAR */
+        .modal { display: none; position: fixed; top: 0; left: 0; right: 0; bottom: 0; background: #ffffff; z-index: 1000; overflow-y: auto; padding: 16px; }
+        .admin-nav { display: flex; gap: 4px; overflow-x: auto; background: #f0ede6; padding: 6px; border-radius: 10px; margin-bottom: 15px; }
+        .admin-tab-btn { background: transparent; border: none; padding: 8px 12px; font-size: 11px; font-weight: 700; color: var(--text-muted); cursor: pointer; border-radius: 6px; white-space: nowrap; }
+        .admin-tab-btn.active { background: var(--primary); color: #ffffff; }
+        .admin-tab-content { display: none; }
+        .admin-tab-content.active { display: block; }
+        
+        /* PREVIEW CONTAINER */
+        .preview-box { width: 100%; height: 160px; border: 2px dashed var(--border); border-radius: 8px; display: flex; align-items: center; justify-content: center; overflow: hidden; background: #f5f3ef; margin-bottom: 8px; position: relative; }
+        .preview-box img { max-width: 100%; max-height: 100%; object-fit: contain; transition: transform 0.2s ease; }
+
         .admin-card-item { border: 1px solid var(--border); padding: 10px; border-radius: 8px; margin-bottom: 10px; background: #faf9f7; }
         .toggle-btn { padding: 4px 8px; border-radius: 6px; border: none; font-size: 10px; cursor: pointer; font-weight: 700; }
         .add-menu-box { background: #eefbe8; border: 1px solid #c8e6c9; padding: 12px; border-radius: 10px; margin-bottom: 20px; }
+        .admin-cat-group { margin-bottom: 15px; border-bottom: 2px solid var(--border); padding-bottom: 10px; }
+        .admin-cat-title { font-size: 12px; font-weight: 800; color: var(--primary); text-transform: uppercase; margin-bottom: 8px; background: #ffebee; padding: 4px 8px; border-radius: 4px; display: inline-block; }
     </style>
 </head>
-<body>
+<body onclick="inisialisasiAudio()">
+
+    <!-- AUDIO BACKSOUND -->
+    <audio id="bgMusic" loop>
+        <source id="audioSource" src="https://files.freemusicarchive.org/storage-freemusicarchive-org/music/ccCommunity/Kevin_MacLeod/In_The_Field/Kevin_MacLeod_-_The_Ice_Giant.mp3" type="audio/mpeg">
+    </audio>
+
+    <!-- TOMBOL KONTROL MUSIK MELAYANG -->
+    <div class="music-float-btn" id="musicToggleBtn" onclick="toggleMusic(event)" title="Nyalakan/Matikan Musik">
+        🎵
+    </div>
 
 <div class="container">
     <div class="header">
@@ -107,14 +138,28 @@
             </div>
         </div>
 
-        <div class="section-title">Papan Promo Spektakuler</div>
-        <div class="card-box" style="padding: 10px;">
+        <!-- PAPAN PROMO SUPER MENCOLOK -->
+        <div class="promo-highlight-box">
+            <div style="text-align: center;">
+                <span class="promo-badge-alert">🔥 SPESIAL PROMO HARI INI 🔥</span>
+                <div class="promo-title-flash">Papan Promo & Penawaran Spesial</div>
+            </div>
             <img id="displayPromo" src="https://via.placeholder.com/400x180/d32f2f/ffffff?text=Promo" alt="Promo" class="promo-img">
         </div>
 
         <div class="section-title">⭐ Best Seller & Bundling Promo</div>
         <div class="card-box" style="padding: 10px;">
             <div class="featured-grid" id="featuredMenuList"></div>
+        </div>
+
+        <!-- VOUCHER ULASAN (DI ATAS MENU LENGKAP) -->
+        <div class="section-title">Ulasan Layanan</div>
+        <div class="review-card-box">
+            <div class="voucher-header-text">🎁 VOUCHER POTONGAN</div>
+            <div class="voucher-big-value">Rp 4.000</div>
+            <p class="voucher-subtext">Beri rating Bintang 5 di Google Maps & klaim diskonmu!</p>
+            <a id="displayGmaps" href="https://maps.google.com" target="_blank" class="btn-gold">Beri Rating di Google Maps</a>
+            <p class="claim-hint">📌 Tunjukkan bukti ulasan ke kasir</p>
         </div>
 
         <div class="section-title">Daftar Menu Lengkap</div>
@@ -128,15 +173,6 @@
                 <button class="filter-chip" onclick="filterMenu('matcha', this)">Matcha</button>
             </div>
             <div class="menu-grid" id="clientMenuList"></div>
-        </div>
-
-        <div class="section-title">Ulasan Layanan</div>
-        <div class="review-card-box">
-            <div class="voucher-header-text">🎁 VOUCHER POTONGAN</div>
-            <div class="voucher-big-value">Rp 2.000</div>
-            <p class="voucher-subtext">Beri rating Bintang 5 di Google Maps & klaim diskonmu!</p>
-            <a id="displayGmaps" href="https://maps.google.com" target="_blank" class="btn-gold">Beri Rating di Google Maps</a>
-            <p class="claim-hint">📌 Tunjukkan bukti ulasan ke kasir</p>
         </div>
 
         <div class="section-title">Kritik & Saran Privat</div>
@@ -155,56 +191,177 @@
         </div>
     </div>
 
+    <!-- MODAL PANEL ADMIN FULL SCREEN -->
     <div class="modal" id="adminModal">
-        <div style="display: flex; justify-content: space-between; align-items: center; margin-bottom: 15px;">
-            <h2 style="font-size: 16px; color: var(--primary);">Panel Admin Master</h2>
-            <button onclick="tutupAdmin()" class="badge badge-danger" style="cursor: pointer; width: auto;">Tutup</button>
-        </div>
-        <div id="loginSection">
-            <div class="form-group"><input type="password" id="pinInput" class="form-input" placeholder="Masukkan PIN Admin"></div>
+        <!-- FORM LOGIN PIN -->
+        <div id="loginSection" style="max-width: 400px; margin: 40px auto; background: #faf9f7; border: 1px solid var(--border); padding: 20px; border-radius: 12px;">
+            <div style="display: flex; justify-content: space-between; align-items: center; margin-bottom: 15px;">
+                <h2 style="font-size: 16px; color: var(--primary);">Verifikasi PIN Admin</h2>
+                <button onclick="tutupAdmin()" class="badge badge-danger" style="cursor: pointer; width: auto;">Tutup</button>
+            </div>
+            <div class="form-group">
+                <input type="password" id="pinInput" class="form-input" placeholder="Masukkan PIN Admin">
+            </div>
             <button onclick="loginAdmin()" class="btn btn-primary">Masuk Admin</button>
         </div>
-        <div id="adminDashboard" style="display: none;">
-            <div class="section-title">➕ Tambah Menu Baru</div>
-            <div class="add-menu-box">
-                <div class="form-group"><input type="text" id="newMenuName" class="form-input" placeholder="Nama Menu (Wajib)"></div>
-                <div class="form-group" style="display:flex; gap:6px;">
-                    <input type="text" id="newMenuPrice" class="form-input" placeholder="Harga, misal: 16K" style="width:60%;">
-                    <select id="newMenuCat" class="form-input" style="width:40%;">
-                        <option value="icecream">Ice Cream</option><option value="fruittea">Fruit Tea</option><option value="milktea">Milk Tea</option><option value="coffee">Coffee</option><option value="matcha">Matcha</option>
-                    </select>
-                </div>
-                <div class="form-group"><input type="file" id="newMenuImgFile" accept="image/*" class="form-input"></div>
-                <button onclick="tambahMenuBaru()" class="btn btn-primary" style="background:#2e7d32;">Simpan Menu Baru</button>
+
+        <!-- DASHBOARD ADMIN FULL SCREEN DENGAN TAB -->
+        <div id="adminDashboard" style="display: none; max-width: 500px; margin: 0 auto; padding-bottom: 40px;">
+            <div style="display: flex; justify-content: space-between; align-items: center; margin-bottom: 15px; border-bottom: 2px solid var(--border); padding-bottom: 10px;">
+                <h2 style="font-size: 16px; color: var(--primary);">Panel Admin Mixue Sukorejo</h2>
+                <button onclick="logoutAdmin()" class="badge badge-danger" style="cursor: pointer; width: auto;">Keluar</button>
             </div>
-            <div class="section-title">Upload Logo Header</div>
-            <div class="form-group"><input type="file" id="editHeaderLogoFile" accept="image/*" class="form-input"></div>
-            <button onclick="simpanHeaderLogo()" class="btn btn-primary" style="margin-bottom: 20px;">Upload Logo Header</button>
-            <div class="section-title">Upload Foto Papan Promo</div>
-            <div class="form-group"><input type="file" id="editPromoFile" accept="image/*" class="form-input"></div>
-            <button onclick="simpanPromo()" class="btn btn-primary" style="margin-bottom: 20px;">Upload Promo</button>
-            <div class="section-title">Atur Akses Wi-Fi</div>
-            <div class="form-group"><input type="text" id="editSSID" class="form-input" placeholder="SSID Wi-Fi"></div>
-            <div class="form-group"><input type="text" id="editPass" class="form-input" placeholder="Password Wi-Fi"></div>
-            <div class="form-group"><input type="file" id="editQRFile" accept="image/*" class="form-input"></div>
-            <button onclick="simpanWifi()" class="btn btn-primary" style="margin-bottom: 20px;">Simpan Wi-Fi & QR</button>
-            <div class="section-title">Atur Link & Media Sosial</div>
-            <div class="form-group"><input type="text" id="editGmaps" class="form-input" placeholder="Link Google Maps"></div>
-            <div class="form-group"><input type="text" id="editIG" class="form-input" placeholder="Link Instagram"></div>
-            <div class="form-group"><input type="text" id="editTikTok" class="form-input" placeholder="Link TikTok"></div>
-            <button onclick="simpanLink()" class="btn btn-primary" style="margin-bottom: 20px;">Simpan Link</button>
-            <div class="section-title">Kelola Menu & Hapus Menu</div>
-            <div id="adminMenuList" style="margin-bottom: 20px;"></div>
-            <button onclick="logoutAdmin()" class="btn btn-danger">Keluar Admin</button>
+
+            <!-- HEADER TAB NAVIGASI -->
+            <div class="admin-nav">
+                <button class="admin-tab-btn active" onclick="switchTab('tabBeranda', this)">🏠 Beranda & WiFi</button>
+                <button class="admin-tab-btn" onclick="switchTab('tabEdit', this)">✏️ Edit Menu & Harga</button>
+                <button class="admin-tab-btn" onclick="switchTab('tabInput', this)">➕ Input Menu Baru</button>
+                <button class="admin-tab-btn" onclick="switchTab('tabPromo', this)">🖼️ Promo & Foto</button>
+                <button class="admin-tab-btn" onclick="switchTab('tabSetting', this)">⚙️ Setelan & PIN</button>
+            </div>
+
+            <!-- TAB 1: BERANDA & WIFI -->
+            <div id="tabBeranda" class="admin-tab-content active">
+                <div class="section-title">Atur Jaringan Wi-Fi & Musik Backsound</div>
+                <div class="card-box">
+                    <div class="form-group">
+                        <label style="font-size: 11px; font-weight: 700;">Nama SSID Wi-Fi:</label>
+                        <input type="text" id="editSSID" class="form-input" placeholder="Nama SSID">
+                    </div>
+                    <div class="form-group">
+                        <label style="font-size: 11px; font-weight: 700;">Password Wi-Fi:</label>
+                        <input type="text" id="editPass" class="form-input" placeholder="Password Wi-Fi">
+                    </div>
+                    <div class="form-group">
+                        <label style="font-size: 11px; font-weight: 700;">Link Audio Backsound (URL MP3):</label>
+                        <input type="text" id="editAudioUrl" class="form-input" placeholder="https://domain.com/musik.mp3">
+                    </div>
+                    <div class="form-group">
+                        <label style="font-size: 11px; font-weight: 700;">Upload & Atur Posisi QR Code:</label>
+                        <div class="preview-box">
+                            <img id="previewQR" src="qr-wifi.jpg" alt="Preview QR">
+                        </div>
+                        <input type="file" id="editQRFile" accept="image/*" class="form-input" onchange="previewImage(this, 'previewQR', 'zoomQR')">
+                        <div style="display: flex; align-items: center; gap: 8px; margin-top: 6px;">
+                            <label style="font-size: 10px; font-weight: 700;">Zoom / Skala:</label>
+                            <input type="range" id="zoomQR" min="0.5" max="2" step="0.1" value="1" style="width: 100%;" oninput="adjustZoom('previewQR', this.value)">
+                        </div>
+                    </div>
+                    <button onclick="simpanWifiDanAudio()" class="btn btn-primary">Simpan Beranda & Audio</button>
+                </div>
+            </div>
+
+            <!-- TAB 2: EDIT MENU & HARGA -->
+            <div id="tabEdit" class="admin-tab-content">
+                <div class="section-title">Kelola & Ubah Harga Menu</div>
+                <div id="adminMenuList"></div>
+            </div>
+
+            <!-- TAB 3: INPUT MENU BARU -->
+            <div id="tabInput" class="admin-tab-content">
+                <div class="section-title">Tambah Menu Baru</div>
+                <div class="add-menu-box">
+                    <div class="form-group">
+                        <label style="font-size: 11px; font-weight: 700;">Nama Menu:</label>
+                        <input type="text" id="newMenuName" class="form-input" placeholder="Nama Menu">
+                    </div>
+                    <div class="form-group" style="display:flex; gap:6px;">
+                        <div style="width:60%;">
+                            <label style="font-size: 11px; font-weight: 700;">Harga:</label>
+                            <input type="text" id="newMenuPrice" class="form-input" placeholder="mis: 16K">
+                        </div>
+                        <div style="width:40%;">
+                            <label style="font-size: 11px; font-weight: 700;">Kategori:</label>
+                            <select id="newMenuCat" class="form-input">
+                                <option value="icecream">Ice Cream</option>
+                                <option value="fruittea">Fruit Tea</option>
+                                <option value="milktea">Milk Tea</option>
+                                <option value="coffee">Coffee</option>
+                                <option value="matcha">Matcha</option>
+                            </select>
+                        </div>
+                    </div>
+                    <div class="form-group">
+                        <label style="font-size: 11px; font-weight: 700;">Foto Produk:</label>
+                        <div class="preview-box" style="height: 120px;">
+                            <img id="previewNewMenu" src="" alt="Preview Menu" style="display: none;">
+                            <span id="placeholderMenuText" style="font-size: 11px; color: var(--text-muted);">Belum ada foto</span>
+                        </div>
+                        <input type="file" id="newMenuImgFile" accept="image/*" class="form-input" onchange="previewImageFile(this, 'previewNewMenu', 'placeholderMenuText', 'zoomNewMenu')">
+                        <div style="display: flex; align-items: center; gap: 8px; margin-top: 6px;">
+                            <label style="font-size: 10px; font-weight: 700;">Zoom:</label>
+                            <input type="range" id="zoomNewMenu" min="0.5" max="2" step="0.1" value="1" style="width: 100%;" oninput="adjustZoom('previewNewMenu', this.value)">
+                        </div>
+                    </div>
+                    <button onclick="tambahMenuBaru()" class="btn btn-primary" style="background:#2e7d32;">Simpan & Tambah Menu</button>
+                </div>
+            </div>
+
+            <!-- TAB 4: PROMO & FOTO -->
+            <div id="tabPromo" class="admin-tab-content">
+                <div class="section-title">Upload Foto Papan Promo & Logo</div>
+                <div class="card-box" style="margin-bottom: 15px;">
+                    <label style="font-size: 11px; font-weight: 700;">Upload & Atur Logo Header:</label>
+                    <div class="preview-box" style="height: 100px;">
+                        <img id="previewHeaderLogo" src="" alt="Preview Logo">
+                    </div>
+                    <div class="form-group" style="margin-top: 4px;"><input type="file" id="editHeaderLogoFile" accept="image/*" class="form-input" onchange="previewImage(this, 'previewHeaderLogo', 'zoomHeaderLogo')"></div>
+                    <div style="display: flex; align-items: center; gap: 8px; margin-bottom: 8px;">
+                        <label style="font-size: 10px; font-weight: 700;">Zoom:</label>
+                        <input type="range" id="zoomHeaderLogo" min="0.5" max="2" step="0.1" value="1" style="width: 100%;" oninput="adjustZoom('previewHeaderLogo', this.value)">
+                    </div>
+                    <button onclick="simpanHeaderLogo()" class="btn btn-primary">Simpan Logo Header</button>
+                </div>
+                <div class="card-box">
+                    <label style="font-size: 11px; font-weight: 700;">Upload & Atur Papan Promo:</label>
+                    <div class="preview-box">
+                        <img id="previewPromoImg" src="" alt="Preview Promo">
+                    </div>
+                    <div class="form-group" style="margin-top: 4px;"><input type="file" id="editPromoFile" accept="image/*" class="form-input" onchange="previewImage(this, 'previewPromoImg', 'zoomPromoImg')"></div>
+                    <div style="display: flex; align-items: center; gap: 8px; margin-bottom: 8px;">
+                        <label style="font-size: 10px; font-weight: 700;">Zoom:</label>
+                        <input type="range" id="zoomPromoImg" min="0.5" max="2" step="0.1" value="1" style="width: 100%;" oninput="adjustZoom('previewPromoImg', this.value)">
+                    </div>
+                    <button onclick="simpanPromo()" class="btn btn-primary">Simpan Papan Promo</button>
+                </div>
+            </div>
+
+            <!-- TAB 5: SETELAN & PIN -->
+            <div id="tabSetting" class="admin-tab-content">
+                <div class="section-title">Atur Link Sosmed & PIN Admin</div>
+                <div class="card-box">
+                    <div class="form-group">
+                        <label style="font-size: 11px; font-weight: 700;">Link Google Maps:</label>
+                        <input type="text" id="editGmaps" class="form-input" placeholder="https://maps.google.com">
+                    </div>
+                    <div class="form-group">
+                        <label style="font-size: 11px; font-weight: 700;">Link Instagram:</label>
+                        <input type="text" id="editIG" class="form-input" placeholder="https://instagram.com">
+                    </div>
+                    <div class="form-group">
+                        <label style="font-size: 11px; font-weight: 700;">Link TikTok:</label>
+                        <input type="text" id="editTikTok" class="form-input" placeholder="https://tiktok.com">
+                    </div>
+                    <button onclick="simpanLink()" class="btn btn-primary" style="margin-bottom: 15px;">Simpan Link</button>
+
+                    <hr style="border: 0; border-top: 1px dashed var(--border); margin: 15px 0;">
+
+                    <div class="form-group">
+                        <label style="font-size: 11px; font-weight: 700; color: var(--danger);">Ganti PIN Admin Baru:</label>
+                        <input type="password" id="newAdminPin" class="form-input" placeholder="Masukkan PIN Baru">
+                    </div>
+                    <button onclick="simpanPinBaru()" class="btn btn-danger">Ubah PIN Admin</button>
+                </div>
+            </div>
+
         </div>
     </div>
 
+    <!-- FOOTER BERSIH -->
     <div class="sanrezt-footer">
         <div class="sanrezt-brand"><span class="brand-white">sanrezt</span><span class="brand-crv-text">.crv</span></div>
         <p class="sanrezt-desc">sanrezt.crv adalah pengembang sistem web portal interaktif dan solusi digital modern.</p>
-        <div class="sanrezt-cta-title">Mau web seperti ini juga?</div>
-        <div class="sanrezt-subtext">Silakan hubungi:</div>
-        <div><a href="https://wa.me/62817814580?text=Halo%20sanrezt.crv,%20saya%20tertarik%20membuat%20website" target="_blank" class="link-wa-text">WhatsApp</a></div>
         <div class="copyright-text">&copy; 2026 Mixue Sukorejo. Hak Cipta Dilindungi.<br>Dikembangkan oleh sanrezt.crv<button class="admin-login-link" onclick="bukaAdmin()">Login Sistem Admin</button></div>
     </div>
 </div>
@@ -223,56 +380,86 @@
     firebase.initializeApp(firebaseConfig);
     const db = firebase.firestore();
 
-    const brokenImageSVG = "data:image/svg+xml;utf8,<svg xmlns='http://www.w3.org/2000/svg' width='100' height='100' viewBox='0 0 24 24' fill='none' stroke='%23a0a0a0' stroke-width='1.5'><rect x='3' y='3' width='18' height='18' rx='2'/><circle cx='8.5' cy='8.5' r='1.5'/><polyline points='21 15 16 10 5 21'/></svg>";
+    const fallbackImg = "data:image/svg+xml;utf8,<svg xmlns='http://www.w3.org/2000/svg' width='100' height='100' viewBox='0 0 24 24' fill='none' stroke='%23d32f2f' stroke-width='2'><rect x='3' y='3' width='18' height='18' rx='2'/><circle cx='8.5' cy='8.5' r='1.5'/><polyline points='21 15 16 10 5 21'/></svg>";
     
-    // DAFTAR LENGKAP MENU MIXUE OTOMATIS MASUK
     const defaultMenu = [
         { id: 1, name: "Mixue Ice Cream Cone", price: "8K", oldPrice: "", cat: "icecream", ready: true, bestseller: true, promo: false, img: "https://via.placeholder.com/150/d32f2f/ffffff?text=Cone" },
         { id: 2, name: "Boba Sundae", price: "16K", oldPrice: "18K", cat: "icecream", ready: true, bestseller: true, promo: true, img: "https://via.placeholder.com/150/d32f2f/ffffff?text=Boba+Sundae" },
-        { id: 3, name: "Mi Sundae Mango", price: "16K", oldPrice: "", cat: "icecream", ready: true, bestseller: false, promo: false, img: "https://via.placeholder.com/150/d32f2f/ffffff?text=Mango+Sundae" },
-        { id: 4, name: "Mi Sundae Strawberry", price: "16K", oldPrice: "", cat: "icecream", ready: true, bestseller: false, promo: false, img: "https://via.placeholder.com/150/d32f2f/ffffff?text=Strawberry+Sundae" },
-        { id: 5, name: "Lucky Sundae", price: "16K", oldPrice: "", cat: "icecream", ready: true, bestseller: false, promo: false, img: "https://via.placeholder.com/150/d32f2f/ffffff?text=Lucky+Sundae" },
         { id: 10, name: "Fresh Squeezed Lemonade", price: "10K", oldPrice: "", cat: "fruittea", ready: true, bestseller: true, promo: false, img: "https://via.placeholder.com/150/ffb300/ffffff?text=Lemonade" },
-        { id: 11, name: "Lemon Jasmine Tea", price: "12K", oldPrice: "", cat: "fruittea", ready: true, bestseller: false, promo: false, img: "https://via.placeholder.com/150/ffb300/ffffff?text=Jasmine+Tea" },
-        { id: 12, name: "Lemon Earl Grey Tea", price: "12K", oldPrice: "", cat: "fruittea", ready: true, bestseller: false, promo: false, img: "https://via.placeholder.com/150/ffb300/ffffff?text=Earl+Grey" },
-        { id: 13, name: "Passion Fruit Jasmine Tea", price: "16K", oldPrice: "18K", cat: "fruittea", ready: true, bestseller: true, promo: true, img: "https://via.placeholder.com/150/ffb300/ffffff?text=Passion+Fruit" },
-        { id: 14, name: "Mango Oats Jasmine Tea", price: "16K", oldPrice: "", cat: "fruittea", ready: true, bestseller: false, promo: false, img: "https://via.placeholder.com/150/ffb300/ffffff?text=Mango+Oats" },
-        { id: 20, name: "Pearl Milk Tea", price: "19K", oldPrice: "", cat: "milktea", ready: true, bestseller: true, promo: false, img: "https://via.placeholder.com/150/702313/ffffff?text=Pearl+Milk+Tea" },
-        { id: 21, name: "Oats Milk Tea", price: "19K", oldPrice: "", cat: "milktea", ready: true, bestseller: false, promo: false, img: "https://via.placeholder.com/150/702313/ffffff?text=Oats+Milk+Tea" },
-        { id: 22, name: "Coconut Jelly Milk Tea", price: "19K", oldPrice: "", cat: "milktea", ready: true, bestseller: false, promo: false, img: "https://via.placeholder.com/150/702313/ffffff?text=Coconut+Jelly" },
-        { id: 23, name: "Red Bean Milk Tea", price: "19K", oldPrice: "", cat: "milktea", ready: true, bestseller: false, promo: false, img: "https://via.placeholder.com/150/702313/ffffff?text=Red+Bean" },
-        { id: 24, name: "Brown Sugar Boba Milk Tea", price: "19K", oldPrice: "22K", cat: "milktea", ready: true, bestseller: true, promo: true, img: "https://via.placeholder.com/150/702313/ffffff?text=Brown+Sugar" },
-        { id: 30, name: "Creamy Mango Boba", price: "22K", oldPrice: "", cat: "milktea", ready: true, bestseller: false, promo: false, img: "https://via.placeholder.com/150/702313/ffffff?text=Creamy+Mango" },
+        { id: 20, name: "Pearl Milk Tea", price: "19K", oldPrice: "", cat: "milktea", ready: true, bestseller: true, promo: false, img: "https://via.placeholder.com/150/702313/ffffff?text=Milk+Tea" },
         { id: 35, name: "Americano Coffee", price: "12K", oldPrice: "", cat: "coffee", ready: true, bestseller: false, promo: false, img: "https://via.placeholder.com/150/2b2927/ffffff?text=Americano" },
-        { id: 36, name: "Mocha Coffee", price: "16K", oldPrice: "", cat: "coffee", ready: true, bestseller: false, promo: false, img: "https://via.placeholder.com/150/2b2927/ffffff?text=Mocha" },
-        { id: 40, name: "Matcha Red Bean Sundae", price: "18K", oldPrice: "", cat: "matcha", ready: true, bestseller: true, promo: false, img: "https://via.placeholder.com/150/2e7d32/ffffff?text=Matcha+Sundae" }
+        { id: 40, name: "Matcha Red Bean Sundae", price: "18K", oldPrice: "", cat: "matcha", ready: true, bestseller: true, promo: false, img: "https://via.placeholder.com/150/2e7d32/ffffff?text=Matcha" }
     ];
 
     let menuData = [];
     let configData = {};
+    let currentAdminPin = "1624";
+    let isMusicPlaying = false;
+
+    function inisialisasiAudio() {
+        const music = document.getElementById('bgMusic');
+        music.volume = 0.15; 
+        if (!isMusicPlaying) {
+            music.play().then(() => {
+                isMusicPlaying = true;
+                document.getElementById('musicToggleBtn').innerText = "🔊";
+            }).catch(e => {
+                console.log("Autoplay diblokir browser, menunggu interaksi pengguna.");
+            });
+        }
+    }
+
+    function toggleMusic(e) {
+        e.stopPropagation();
+        const music = document.getElementById('bgMusic');
+        const btn = document.getElementById('musicToggleBtn');
+        if (isMusicPlaying) {
+            music.pause();
+            isMusicPlaying = false;
+            btn.innerText = "🔇";
+        } else {
+            music.volume = 0.15;
+            music.play();
+            isMusicPlaying = true;
+            btn.innerText = "🔊";
+        }
+    }
 
     db.collection("settings").doc("portalConfig").onSnapshot((doc) => {
         if (doc.exists) {
             configData = doc.data();
+            if(configData.adminPin) currentAdminPin = configData.adminPin;
+            if(configData.audioUrl) {
+                const audio = document.getElementById('bgMusic');
+                const source = document.getElementById('audioSource');
+                source.src = configData.audioUrl;
+                audio.load();
+            }
         } else {
             configData = {
                 ssid: "PELANGGAN MIXUE FREE WIFI", pass: "kenangan#manis11", qr: "qr-wifi.jpg",
                 headerLogo: "https://via.placeholder.com/80/ffffff/d32f2f?text=MX",
                 promoImg: "https://via.placeholder.com/400x180/d32f2f/ffffff?text=Promo",
-                gmaps: "https://maps.google.com", ig: "https://instagram.com", tiktok: "https://tiktok.com"
+                gmaps: "https://maps.google.com", ig: "https://instagram.com", tiktok: "https://tiktok.com",
+                adminPin: "1624",
+                audioUrl: "https://files.freemusicarchive.org/storage-freemusicarchive-org/music/ccCommunity/Kevin_MacLeod/In_The_Field/Kevin_MacLeod_-_The_Ice_Giant.mp3"
             };
             db.collection("settings").doc("portalConfig").set(configData);
         }
         renderConfigView();
     });
 
-    db.collection("menus").onSnapshot((snapshot) => {
+    db.collection("menus").get().then((snapshot) => {
         if (snapshot.empty) {
             defaultMenu.forEach(item => db.collection("menus").doc(String(item.id)).set(item));
-        } else {
-            menuData = [];
-            snapshot.forEach(doc => menuData.push(doc.data()));
-            renderClientView();
+        }
+    });
+
+    db.collection("menus").onSnapshot((snapshot) => {
+        menuData = [];
+        snapshot.forEach(doc => menuData.push(doc.data()));
+        renderClientView();
+        if (document.getElementById('adminDashboard').style.display === 'block') {
             renderAdminDashboard();
         }
     });
@@ -286,6 +473,11 @@
         document.getElementById('displayGmaps').href = configData.gmaps || '#';
         document.getElementById('displayIG').href = configData.ig || '#';
         document.getElementById('displayTikTok').href = configData.tiktok || '#';
+
+        if(document.getElementById('editAudioUrl')) document.getElementById('editAudioUrl').value = configData.audioUrl || '';
+        if(document.getElementById('previewQR')) document.getElementById('previewQR').src = configData.qr || 'qr-wifi.jpg';
+        if(document.getElementById('previewHeaderLogo')) document.getElementById('previewHeaderLogo').src = configData.headerLogo || '';
+        if(document.getElementById('previewPromoImg')) document.getElementById('previewPromoImg').src = configData.promoImg || '';
     }
 
     function renderClientView() {
@@ -297,7 +489,7 @@
             div.innerHTML = `
                 ${item.bestseller ? '<span class="ribbon-bestseller">BEST SELLER</span>' : ''}
                 ${item.promo ? '<span class="ribbon-promo">PROMO</span>' : ''}
-                <img src="${item.img}" class="menu-img">
+                <img src="${item.img || fallbackImg}" onerror="this.src='${fallbackImg}'" class="menu-img">
                 <div class="menu-title">${item.name}</div>
                 <div>${item.oldPrice ? '<span class="old-price">Rp' + item.oldPrice + '</span>' : ''}<span class="menu-price">Rp${item.price}</span></div>
                 <span class="badge ${item.ready ? 'badge-success' : 'badge-danger'}">${item.ready ? 'Tersedia' : 'Habis'}</span>
@@ -314,13 +506,46 @@
             div.innerHTML = `
                 ${item.bestseller ? '<span class="ribbon-bestseller">BEST SELLER</span>' : ''}
                 ${item.promo ? '<span class="ribbon-promo">PROMO</span>' : ''}
-                <img src="${item.img}" class="menu-img">
+                <img src="${item.img || fallbackImg}" onerror="this.src='${fallbackImg}'" class="menu-img">
                 <div class="menu-title">${item.name}</div>
                 <div>${item.oldPrice ? '<span class="old-price">Rp' + item.oldPrice + '</span>' : ''}<span class="menu-price">Rp${item.price}</span></div>
                 <span class="badge ${item.ready ? 'badge-success' : 'badge-danger'}">${item.ready ? 'Tersedia' : 'Habis'}</span>
             `;
             listContainer.appendChild(div);
         });
+    }
+
+    function previewImage(input, imgId, rangeId) {
+        if (input.files && input.files[0]) {
+            const reader = new FileReader();
+            reader.onload = e => {
+                const img = document.getElementById(imgId);
+                img.src = e.target.result;
+                document.getElementById(rangeId).value = 1;
+                img.style.transform = "scale(1)";
+            };
+            reader.readAsDataURL(input.files[0]);
+        }
+    }
+
+    function previewImageFile(input, imgId, textId, rangeId) {
+        if (input.files && input.files[0]) {
+            const reader = new FileReader();
+            reader.onload = e => {
+                const img = document.getElementById(imgId);
+                img.src = e.target.result;
+                img.style.display = "block";
+                document.getElementById(textId).style.display = "none";
+                document.getElementById(rangeId).value = 1;
+                img.style.transform = "scale(1)";
+            };
+            reader.readAsDataURL(input.files[0]);
+        }
+    }
+
+    function adjustZoom(imgId, scale) {
+        const img = document.getElementById(imgId);
+        if(img) img.style.transform = `scale(${scale})`;
     }
 
     function salinPassword() {
@@ -347,20 +572,34 @@
         window.open(`https://wa.me/6282241581066?text=` + encodeURIComponent(`Halo Customer Care Mixue Sukorejo, ada masukan dari ${nama}:\n\n"${pesan}"`), '_blank');
     }
 
-    function bukaAdmin() { document.getElementById('adminModal').style.display = 'block'; }
+    function bukaAdmin() { 
+        document.getElementById('adminModal').style.display = 'block'; 
+        document.getElementById('loginSection').style.display = 'block';
+        document.getElementById('adminDashboard').style.display = 'none';
+        document.getElementById('pinInput').value = '';
+        renderConfigView();
+    }
+
     function tutupAdmin() { document.getElementById('adminModal').style.display = 'none'; }
+    
     function loginAdmin() {
-        if (document.getElementById('pinInput').value === "1624") {
+        const inputPin = document.getElementById('pinInput').value;
+        if (inputPin === currentAdminPin) {
             document.getElementById('loginSection').style.display = 'none';
             document.getElementById('adminDashboard').style.display = 'block';
             renderAdminDashboard();
         } else { alert("PIN Admin Salah!"); }
     }
+
     function logoutAdmin() {
-        document.getElementById('loginSection').style.display = 'block';
-        document.getElementById('adminDashboard').style.display = 'none';
-        document.getElementById('pinInput').value = '';
         tutupAdmin();
+    }
+
+    function switchTab(tabId, btn) {
+        document.querySelectorAll('.admin-tab-content').forEach(el => el.classList.remove('active'));
+        document.querySelectorAll('.admin-tab-btn').forEach(el => el.classList.remove('active'));
+        document.getElementById(tabId).classList.add('active');
+        btn.classList.add('active');
     }
 
     function tambahMenuBaru() {
@@ -374,7 +613,7 @@
             const reader = new FileReader();
             reader.onload = e => simpanMenuFirestore(id, name, price, cat, e.target.result);
             reader.readAsDataURL(fileInput.files[0]);
-        } else { simpanMenuFirestore(id, name, price, cat, brokenImageSVG); }
+        } else { simpanMenuFirestore(id, name, price, cat, fallbackImg); }
     }
 
     function simpanMenuFirestore(id, name, price, cat, img) {
@@ -382,7 +621,10 @@
             document.getElementById('newMenuName').value = '';
             document.getElementById('newMenuPrice').value = '';
             document.getElementById('newMenuImgFile').value = '';
+            document.getElementById('previewNewMenu').style.display = 'none';
+            document.getElementById('placeholderMenuText').style.display = 'block';
             alert("Menu berhasil ditambahkan!");
+            switchTab('tabEdit', document.querySelectorAll('.admin-tab-btn')[1]);
         });
     }
 
@@ -397,43 +639,85 @@
 
         const container = document.getElementById('adminMenuList');
         container.innerHTML = '';
-        menuData.forEach(item => {
-            container.innerHTML += `
-                <div class="admin-card-item">
-                    <div style="font-size:12px; font-weight:700; margin-bottom:6px; display:flex; justify-content:space-between;">
-                        <span>${item.name} (Rp${item.price})</span>
-                        <button onclick="hapusMenu(${item.id})" class="toggle-btn badge-danger">Hapus</button>
-                    </div>
-                    <div style="display:flex; gap:6px; margin-bottom:6px;">
-                        <button onclick="db.collection('menus').doc('${item.id}').update({ready: ${!item.ready}})" class="toggle-btn ${item.ready ? 'badge-success' : 'badge-danger'}">${item.ready ? 'Ready' : 'Habis'}</button>
-                        <button onclick="db.collection('menus').doc('${item.id}').update({bestseller: ${!item.bestseller}})" class="toggle-btn ${item.bestseller ? 'btn-primary' : 'btn-outline'}">Bestseller</button>
-                        <button onclick="db.collection('menus').doc('${item.id}').update({promo: ${!item.promo}})" class="toggle-btn ${item.promo ? 'btn-danger' : 'btn-outline'}">Promo</button>
-                    </div>
-                    <input type="text" value="${item.oldPrice || ''}" placeholder="Harga Coret (mis: 16K)" onchange="db.collection('menus').doc('${item.id}').update({oldPrice: this.value})" style="font-size:10px; padding:4px; border:1px solid #ccc; border-radius:4px; width:50%; margin-bottom:6px;"><br>
-                    <input type="file" accept="image/*" onchange="const r=new FileReader(); r.onload=e=>db.collection('menus').doc('${item.id}').update({img: e.target.result}); r.readAsDataURL(this.files[0]);" style="font-size:10px;">
-                </div>
-            `;
+
+        const categories = [
+            { key: 'icecream', label: 'Ice Cream' },
+            { key: 'fruittea', label: 'Fruit Tea' },
+            { key: 'milktea', label: 'Milk Tea' },
+            { key: 'coffee', label: 'Coffee' },
+            { key: 'matcha', label: 'Matcha' }
+        ];
+
+        categories.forEach(catObj => {
+            const filtered = menuData.filter(item => item.cat === catObj.key);
+            if (filtered.length > 0) {
+                let groupHTML = `<div class="admin-cat-group"><div class="admin-cat-title">${catObj.label}</div>`;
+                filtered.forEach(item => {
+                    groupHTML += `
+                        <div class="admin-card-item">
+                            <div style="font-size:12px; font-weight:700; margin-bottom:6px; display:flex; justify-content:space-between; align-items:center;">
+                                <span>${item.name}</span>
+                                <button onclick="hapusMenu(${item.id})" class="toggle-btn badge-danger">Hapus</button>
+                            </div>
+                            <div style="display:flex; gap:6px; margin-bottom:6px; align-items:center;">
+                                <label style="font-size:10px; font-weight:700;">Harga:</label>
+                                <input type="text" value="${item.price}" onchange="db.collection('menus').doc('${item.id}').update({price: this.value})" style="font-size:11px; padding:4px; border:1px solid #ccc; border-radius:4px; width:70px; font-weight:700; color:var(--primary);">
+                            </div>
+                            <div style="display:flex; gap:6px; margin-bottom:6px; flex-wrap:wrap;">
+                                <button onclick="db.collection('menus').doc('${item.id}').update({ready: ${!item.ready}})" class="toggle-btn ${item.ready ? 'badge-success' : 'badge-danger'}">${item.ready ? 'Ready' : 'Habis'}</button>
+                                <button onclick="db.collection('menus').doc('${item.id}').update({bestseller: ${!item.bestseller}})" class="toggle-btn ${item.bestseller ? 'btn-primary' : 'btn-outline'}">Bestseller</button>
+                                <button onclick="db.collection('menus').doc('${item.id}').update({promo: ${!item.promo}})" class="toggle-btn ${item.promo ? 'btn-danger' : 'btn-outline'}">Promo</button>
+                            </div>
+                            <div style="display:flex; gap:6px; margin-bottom:6px;">
+                                <input type="text" value="${item.oldPrice || ''}" placeholder="Harga Coret (mis: 16K)" onchange="db.collection('menus').doc('${item.id}').update({oldPrice: this.value})" style="font-size:10px; padding:4px; border:1px solid #ccc; border-radius:4px; width:50%;">
+                            </div>
+                            <input type="file" accept="image/*" onchange="const r=new FileReader(); r.onload=e=>db.collection('menus').doc('${item.id}').update({img: e.target.result}); r.readAsDataURL(this.files[0]);" style="font-size:10px;">
+                        </div>
+                    `;
+                });
+                groupHTML += `</div>`;
+                container.innerHTML += groupHTML;
+            }
         });
     }
 
     function simpanHeaderLogo() {
         const f = document.getElementById('editHeaderLogoFile').files[0];
-        if(f){ const r = new FileReader(); r.onload = e => db.collection("settings").doc("portalConfig").update({headerLogo: e.target.result}).then(()=>alert("Logo Berhasil Diperbarui!")); r.readAsDataURL(f); }
+        if(f){ 
+            const r = new FileReader(); 
+            r.onload = e => db.collection("settings").doc("portalConfig").update({headerLogo: e.target.result}).then(()=>alert("Logo Berhasil Diperbarui!")); 
+            r.readAsDataURL(f); 
+        } else {
+            alert("Pilih file gambar logo terlebih dahulu!");
+        }
     }
     function simpanPromo() {
         const f = document.getElementById('editPromoFile').files[0];
-        if(f){ const r = new FileReader(); r.onload = e => db.collection("settings").doc("portalConfig").update({promoImg: e.target.result}).then(()=>alert("Promo Berhasil Diperbarui!")); r.readAsDataURL(f); }
+        if(f){ 
+            const r = new FileReader(); 
+            r.onload = e => db.collection("settings").doc("portalConfig").update({promoImg: e.target.result}).then(()=>alert("Papan Promo Berhasil Diperbarui!")); 
+            r.readAsDataURL(f); 
+        } else {
+            alert("Pilih file gambar promo terlebih dahulu!");
+        }
     }
-    function simpanWifi() {
+    function simpanWifiDanAudio() {
         const ssid = document.getElementById('editSSID').value;
         const pass = document.getElementById('editPass').value;
+        const audioUrl = document.getElementById('editAudioUrl').value;
         const f = document.getElementById('editQRFile').files[0];
+        
+        const updateData = { ssid, pass, audioUrl };
+        
         if(f){
             const r = new FileReader();
-            r.onload = e => db.collection("settings").doc("portalConfig").update({ssid, pass, qr: e.target.result}).then(()=>alert("Wi-Fi & QR Diperbarui!"));
+            r.onload = e => {
+                updateData.qr = e.target.result;
+                db.collection("settings").doc("portalConfig").update(updateData).then(()=>alert("Pengaturan Beranda & Audio Diperbarui!"));
+            };
             r.readAsDataURL(f);
         } else {
-            db.collection("settings").doc("portalConfig").update({ssid, pass}).then(()=>alert("Wi-Fi Diperbarui!"));
+            db.collection("settings").doc("portalConfig").update(updateData).then(()=>alert("Pengaturan Beranda & Audio Diperbarui!"));
         }
     }
     function simpanLink() {
@@ -441,7 +725,15 @@
             gmaps: document.getElementById('editGmaps').value,
             ig: document.getElementById('editIG').value,
             tiktok: document.getElementById('editTikTok').value
-        }).then(()=>alert("Link Diperbarui!"));
+        }).then(()=>alert("Link Berhasil Diperbarui!"));
+    }
+    function simpanPinBaru() {
+        const pinBaru = document.getElementById('newAdminPin').value.trim();
+        if(!pinBaru) { alert("PIN baru tidak boleh kosong!"); return; }
+        db.collection("settings").doc("portalConfig").update({ adminPin: pinBaru }).then(() => {
+            alert("PIN Admin berhasil diubah! Gunakan PIN baru ini untuk login berikutnya.");
+            document.getElementById('newAdminPin').value = '';
+        });
     }
 </script>
 </body>
