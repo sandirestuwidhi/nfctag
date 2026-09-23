@@ -3,11 +3,9 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Akses WiFi Mixue</title>
+    <title>WiFi Mixue</title>
     <style>
-        * {
-            box-sizing: border-box;
-        }
+        * { box-sizing: border-box; }
         body { 
             font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Helvetica, Arial, sans-serif; 
             background-color: #f4f6f8; 
@@ -27,11 +25,7 @@
             box-shadow: 0 8px 24px rgba(0,0,0,0.08); 
             text-align: center; 
         }
-        h2 {
-            margin: 0 0 16px 0;
-            color: #1a1a1a;
-            font-size: 20px;
-        }
+        h2 { margin: 0 0 16px 0; color: #1a1a1a; font-size: 20px; }
         .wifi-box { 
             background: #f8f9fa; 
             border: 1px solid #e9ecef; 
@@ -40,25 +34,9 @@
             margin-bottom: 16px; 
             text-align: left; 
         }
-        .label { 
-            font-size: 11px; 
-            color: #6c757d; 
-            font-weight: 700; 
-            text-transform: uppercase; 
-            letter-spacing: 0.5px;
-        }
-        .val { 
-            font-family: monospace; 
-            font-size: 14px; 
-            color: #212529; 
-            font-weight: bold; 
-            margin-top: 2px;
-            margin-bottom: 10px; 
-            word-break: break-all; 
-        }
-        .val:last-child {
-            margin-bottom: 0;
-        }
+        .label { font-size: 11px; color: #6c757d; font-weight: 700; text-transform: uppercase; letter-spacing: 0.5px; }
+        .val { font-family: monospace; font-size: 14px; color: #212529; font-weight: bold; margin-top: 2px; margin-bottom: 10px; word-break: break-all; }
+        .val:last-child { margin-bottom: 0; }
         .btn-connect { 
             display: block; 
             width: 100%; 
@@ -70,50 +48,26 @@
             cursor: pointer; 
             background-color: #0d6efd; 
             color: white; 
-            text-decoration: none;
             margin-bottom: 20px;
             box-shadow: 0 4px 12px rgba(13, 110, 253, 0.25);
+            transition: 0.2s;
         }
+        .btn-connect:active { background-color: #0b5ed7; }
         .qr-section {
             background: #ffffff;
             border: 2px dashed #dee2e6;
             border-radius: 16px;
             padding: 16px;
-            margin-bottom: 16px;
         }
-        #qrcode-img { 
-            width: 170px; 
-            height: 170px; 
-            margin: 0 auto; 
-            display: block; 
-        }
-        .qr-instruction { 
-            font-size: 12px; 
-            color: #495057; 
-            font-weight: 600; 
-            line-height: 1.4;
-            margin-top: 10px;
-        }
-        .btn-copy { 
-            display: block; 
-            width: 100%; 
-            padding: 12px; 
-            border: none; 
-            border-radius: 10px; 
-            font-weight: 600; 
-            font-size: 13px; 
-            cursor: pointer; 
-            background-color: #e9ecef; 
-            color: #495057; 
-        }
+        #qrcode-img { width: 170px; height: 170px; margin: 0 auto; display: block; }
+        .qr-instruction { font-size: 12px; color: #495057; font-weight: 600; line-height: 1.4; margin-top: 10px; }
     </style>
 </head>
 <body>
 
 <div class="card">
-    <h2>📶 WiFi Pelanggan Mixue</h2>
+    <h2>WiFi Pelanggan Mixue</h2>
     
-    <!-- Informasi Teks WiFi -->
     <div class="wifi-box">
         <div class="label">Nama WiFi (SSID)</div>
         <div class="val">PELANGGAN MIXUE FREE WIFI</div>
@@ -122,19 +76,16 @@
         <div class="val">kenangan#manis11</div>
     </div>
 
-    <!-- FITUR 1: Tombol Sambung Otomatis -->
-    <a id="btn-wifi-auto" href="" class="btn-connect">⚡ Sambung Otomatis</a>
+    <!-- Tombol Salin Password Interaktif -->
+    <button id="copy-btn" onclick="copyPassword()" class="btn-connect">⚡ Salin Password & Konek</button>
 
-    <!-- FITUR 2: Area QR Code untuk di-scan Kamera -->
+    <!-- Area QR Code untuk Scan Kamera -->
     <div class="qr-section">
         <img id="qrcode-img" src="" alt="QR Code WiFi">
         <div class="qr-instruction">
-            📸 Atau arahkan kamera HP ke QR Code di atas untuk menyambung otomatis
+            📸 Atau scan QR Code di atas dengan Kamera HP untuk langsung tersambung otomatis
         </div>
     </div>
-
-    <!-- FITUR 3: Tombol Salin Password (Cadangan) -->
-    <button onclick="copyPassword()" class="btn-copy">📋 Salin Password</button>
 </div>
 
 <script>
@@ -142,22 +93,24 @@
     const wifiPass = "kenangan#manis11";
     const wifiType = "WPA";
 
-    // Format Skema URI WiFi Universal
+    // Format URI WiFi Universal
     const wifiURI = `WIFI:S:${wifiSSID};T:${wifiType};P:${wifiPass};;`;
 
-    // 1. Set Perintah Sambung Otomatis ke Tombol
-    document.getElementById("btn-wifi-auto").href = wifiURI;
-
-    // 2. Generate QR Code Gambar secara Otomatis
+    // Generate QR Code Gambar
     const qrApiUrl = `https://api.qrserver.com/v1/create-qr-code/?size=200x200&data=${encodeURIComponent(wifiURI)}`;
     document.getElementById("qrcode-img").src = qrApiUrl;
 
-    // 3. Fungsi Salin Password Cadangan
+    // Fungsi Salin Password dengan Efek Teks Berubah
     function copyPassword() {
         navigator.clipboard.writeText(wifiPass).then(() => {
-            alert("Password berhasil disalin: kenangan#manis11");
-        }).catch(() => {
-            alert("Password: kenangan#manis11");
+            const btn = document.getElementById("copy-btn");
+            btn.innerText = "✓ Password Berhasil Disalin!";
+            btn.style.backgroundColor = "#198754";
+            setTimeout(() => {
+                btn.innerText = "⚡ Salin Password & Konek";
+                btn.style.backgroundColor = "#0d6efd";
+            }, 3000);
+            alert("Password 'kenangan#manis11' sudah disalin!\nSilakan pilih WiFi 'PELANGGAN MIXUE FREE WIFI' di menu HP lalu paste/tempel.");
         });
     }
 </script>
