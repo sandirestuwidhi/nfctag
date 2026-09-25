@@ -54,20 +54,6 @@
         .qr-wrapper img { max-width: 170px; height: auto; border-radius: 8px; border: 1px solid var(--border); }
         .qr-hint { font-size: 11px; color: var(--text-muted); margin-top: 6px; }
         .promo-img { width: 100%; height: auto; max-height: 260px; border-radius: 10px; object-fit: cover; border: 2px solid #ffffff; display: block; }
-        .menu-filter { display: flex; gap: 6px; margin-bottom: 12px; overflow-x: auto; padding-bottom: 4px; }
-        .filter-chip { padding: 6px 14px; font-size: 11px; border-radius: 20px; border: 1px solid var(--border); background: #ffffff; color: var(--text-muted); cursor: pointer; white-space: nowrap; font-weight: 600; }
-        .filter-chip.active { background: var(--primary); color: #ffffff; border-color: var(--primary); }
-        .menu-grid, .featured-grid { display: grid; grid-template-columns: repeat(2, 1fr); gap: 10px; }
-        .menu-card { background: #ffffff; border: 1px solid var(--border); border-radius: 12px; padding: 10px 8px; display: flex; flex-direction: column; align-items: center; text-align: center; justify-content: space-between; position: relative; overflow: hidden; }
-        .menu-img { width: 80px; height: 80px; object-fit: cover; border-radius: 10px; margin-bottom: 6px; background: #f0f0f0; }
-        .menu-title { font-size: 12px; font-weight: 700; color: var(--text-dark); margin-bottom: 4px; }
-        .menu-price { font-size: 13px; color: var(--primary); font-weight: 800; }
-        .old-price { font-size: 10px; color: var(--text-muted); text-decoration: line-through; margin-right: 4px; }
-        .ribbon-bestseller { position: absolute; top: 4px; left: 4px; background: var(--accent); color: #000; font-size: 8px; font-weight: 800; padding: 2px 5px; border-radius: 4px; }
-        .ribbon-promo { position: absolute; top: 4px; right: 4px; background: var(--primary); color: #fff; font-size: 8px; font-weight: 800; padding: 2px 5px; border-radius: 4px; }
-        .badge { font-size: 10px; padding: 3px 8px; border-radius: 10px; font-weight: 700; width: 100%; display: block; }
-        .badge-success { background: #e8f5e9; color: var(--success); }
-        .badge-danger { background: #ffebee; color: var(--danger); }
         .form-group { margin-bottom: 10px; }
         .form-input { width: 100%; padding: 10px; border: 1px solid var(--border); border-radius: 8px; font-size: 12px; outline: none; }
         textarea.form-input { resize: vertical; min-height: 60px; }
@@ -95,14 +81,8 @@
         .admin-tab-content.active { display: block; }
         
         /* PREVIEW CONTAINER */
-        .preview-box { width: 100%; height: 160px; border: 2px dashed var(--border); border-radius: 8px; display: flex; align-items: center; justify-content: center; overflow: hidden; background: #f5f3ef; margin-bottom: 8px; position: relative; }
-        .preview-box img { max-width: 100%; max-height: 100%; object-fit: contain; }
-
-        .admin-card-item { border: 1px solid var(--border); padding: 10px; border-radius: 8px; margin-bottom: 10px; background: #faf9f7; }
-        .toggle-btn { padding: 4px 8px; border-radius: 6px; border: none; font-size: 10px; cursor: pointer; font-weight: 700; }
-        .add-menu-box { background: #eefbe8; border: 1px solid #c8e6c9; padding: 12px; border-radius: 10px; margin-bottom: 20px; }
-        .admin-cat-group { margin-bottom: 15px; border-bottom: 2px solid var(--border); padding-bottom: 10px; }
-        .admin-cat-title { font-size: 12px; font-weight: 800; color: var(--primary); text-transform: uppercase; margin-bottom: 8px; background: #ffebee; padding: 4px 8px; border-radius: 4px; display: inline-block; }
+        .preview-box { width: 100%; height: 150px; border: 2px dashed var(--border); border-radius: 8px; display: flex; align-items: center; justify-content: center; overflow: hidden; background: #f5f3ef; margin-bottom: 6px; position: relative; }
+        .preview-box img { max-width: 100%; max-height: 100%; object-fit: contain; transition: transform 0.2s ease; }
     </style>
 </head>
 <body onclick="inisialisasiAudio()">
@@ -121,7 +101,7 @@
     <div class="header">
         <div class="header-text">
             <h1>MIXUE SUKOREJO</h1>
-            <p>Portal Web Menu, Jaringan, dan Layanan Informasi</p>
+            <p>Sistem Jaringan, Promo & Layanan</p>
         </div>
         <img id="displayHeaderLogo" src="https://via.placeholder.com/80/ffffff/d32f2f?text=MX" alt="Logo" class="header-logo">
     </div>
@@ -147,12 +127,7 @@
             <img id="displayPromo" src="https://via.placeholder.com/400x180/d32f2f/ffffff?text=Promo" alt="Promo" class="promo-img">
         </div>
 
-        <div class="section-title">⭐ Best Seller & Bundling Promo</div>
-        <div class="card-box" style="padding: 10px;">
-            <div class="featured-grid" id="featuredMenuList"></div>
-        </div>
-
-        <!-- VOUCHER ULASAN -->
+        <!-- VOUCHER ULASAN (GOOGLE MAPS) -->
         <div class="section-title">Ulasan Layanan</div>
         <div class="review-card-box">
             <div class="voucher-header-text">🎁 VOUCHER POTONGAN</div>
@@ -162,24 +137,12 @@
             <p class="claim-hint">📌 Tunjukkan bukti ulasan ke kasir</p>
         </div>
 
-        <div class="section-title">Daftar Menu Lengkap</div>
-        <div class="card-box" style="padding: 10px;">
-            <div class="menu-filter">
-                <button class="filter-chip active" onclick="filterMenu('all', this)">Semua</button>
-                <button class="filter-chip" onclick="filterMenu('icecream', this)">Ice Cream</button>
-                <button class="filter-chip" onclick="filterMenu('fruittea', this)">Fruit Tea</button>
-                <button class="filter-chip" onclick="filterMenu('milktea', this)">Milk Tea</button>
-                <button class="filter-chip" onclick="filterMenu('coffee', this)">Coffee</button>
-                <button class="filter-chip" onclick="filterMenu('matcha', this)">Matcha</button>
-            </div>
-            <div class="menu-grid" id="clientMenuList"></div>
-        </div>
-
-        <div class="section-title">Kritik & Saran Privat</div>
+        <!-- KRITIK, SARAN & KOMPLAIN -->
+        <div class="section-title">Kritik, Saran & Komplain</div>
         <div class="card-box">
             <form onsubmit="kirimSaran(event)">
                 <div class="form-group"><input type="text" id="namaInput" class="form-input" placeholder="Nama Anda (Opsional)"></div>
-                <div class="form-group"><textarea id="pesanInput" class="form-input" placeholder="Tulis masukan Anda..." required></textarea></div>
+                <div class="form-group"><textarea id="pesanInput" class="form-input" placeholder="Tulis masukan atau komplain Anda..." required></textarea></div>
                 <button type="submit" class="btn btn-outline">Kirim ke Customer Care</button>
             </form>
         </div>
@@ -197,7 +160,7 @@
         <div id="loginSection" style="max-width: 400px; margin: 40px auto; background: #faf9f7; border: 1px solid var(--border); padding: 20px; border-radius: 12px;">
             <div style="display: flex; justify-content: space-between; align-items: center; margin-bottom: 15px;">
                 <h2 style="font-size: 16px; color: var(--primary);">Verifikasi PIN Admin</h2>
-                <button onclick="tutupAdmin()" class="badge badge-danger" style="cursor: pointer; width: auto;">Tutup</button>
+                <button onclick="tutupAdmin()" class="badge badge-danger" style="cursor: pointer; width: auto; background:#c62828; color:#fff; padding:4px 8px; border:none; border-radius:4px;">Tutup</button>
             </div>
             <div class="form-group">
                 <input type="password" id="pinInput" class="form-input" placeholder="Masukkan PIN Admin">
@@ -209,16 +172,14 @@
         <div id="adminDashboard" style="display: none; max-width: 500px; margin: 0 auto; padding-bottom: 40px;">
             <div style="display: flex; justify-content: space-between; align-items: center; margin-bottom: 15px; border-bottom: 2px solid var(--border); padding-bottom: 10px;">
                 <h2 style="font-size: 16px; color: var(--primary);">Panel Admin Mixue Sukorejo</h2>
-                <button onclick="logoutAdmin()" class="badge badge-danger" style="cursor: pointer; width: auto;">Keluar</button>
+                <button onclick="logoutAdmin()" class="badge badge-danger" style="cursor: pointer; width: auto; background:#c62828; color:#fff; padding:4px 8px; border:none; border-radius:4px;">Keluar</button>
             </div>
 
             <!-- HEADER TAB NAVIGASI -->
             <div class="admin-nav">
-                <button class="admin-tab-btn active" onclick="switchTab('tabBeranda', this)">🏠 Beranda & WiFi</button>
-                <button class="admin-tab-btn" onclick="switchTab('tabEdit', this)">✏️ Edit Menu</button>
-                <button class="admin-tab-btn" onclick="switchTab('tabInput', this)">➕ Menu Baru</button>
-                <button class="admin-tab-btn" onclick="switchTab('tabPromo', this)">🖼️ Promo & Logo</button>
-                <button class="admin-tab-btn" onclick="switchTab('tabSetting', this)">⚙️ Setelan</button>
+                <button class="admin-tab-btn active" onclick="switchTab('tabBeranda', this)">🏠 WiFi & Musik</button>
+                <button class="admin-tab-btn" onclick="switchTab('tabPromo', this)">🖼️ Logo & Promo</button>
+                <button class="admin-tab-btn" onclick="switchTab('tabSetting', this)">⚙️ Setelan & PIN</button>
             </div>
 
             <!-- TAB 1: BERANDA & WIFI -->
@@ -238,82 +199,53 @@
 
                 <div class="card-box" style="margin-bottom: 15px;">
                     <div class="form-group">
-                        <label style="font-size: 11px; font-weight: 700;">Upload QR Code Wi-Fi:</label>
+                        <label style="font-size: 11px; font-weight: 700;">Upload QR Code Wi-Fi (Zoom):</label>
                         <div class="preview-box"><img id="previewQR" src="qr-wifi.jpg" alt="Preview QR"></div>
-                        <input type="file" id="editQRFile" accept="image/*" class="form-input" onchange="previewImage(this, 'previewQR')">
+                        <input type="file" id="editQRFile" accept="image/*" class="form-input" onchange="previewImageWithZoom(this, 'previewQR', 'zoomQR')">
+                        <div style="display: flex; align-items: center; gap: 8px; margin-top: 6px;">
+                            <label style="font-size: 10px; font-weight: 700;">Zoom:</label>
+                            <input type="range" id="zoomQR" min="0.5" max="2" step="0.1" value="1" style="width: 100%;" oninput="adjustZoom('previewQR', this.value)">
+                        </div>
                     </div>
                     <button onclick="simpanQR()" class="btn btn-primary">Simpan QR Code</button>
                 </div>
 
                 <div class="card-box">
                     <div class="form-group">
-                        <label style="font-size: 11px; font-weight: 700;">Upload File Backsound (.mp3):</label>
-                        <input type="file" id="editAudioFile" accept="audio/mp3, audio/mpeg" class="form-input">
+                        <label style="font-size: 11px; font-weight: 700;">Link URL Musik Backsound (.mp3):</label>
+                        <input type="text" id="editAudioUrl" class="form-input" placeholder="https://domain.com/musik.mp3">
+                        <p style="font-size: 10px; color: var(--text-muted); margin-top: 4px;">Gunakan link URL langsung berformat MP3 agar musik stabil dan tidak hilang saat direfresh.</p>
                     </div>
-                    <button onclick="simpanAudio()" class="btn btn-primary">Simpan Musik Audio</button>
+                    <button onclick="simpanAudioUrl()" class="btn btn-primary">Simpan Link Audio</button>
                 </div>
             </div>
 
-            <!-- TAB 2: EDIT MENU & HARGA -->
-            <div id="tabEdit" class="admin-tab-content">
-                <div class="section-title">Kelola & Ubah Harga Menu</div>
-                <div id="adminMenuList"></div>
-            </div>
-
-            <!-- TAB 3: INPUT MENU BARU -->
-            <div id="tabInput" class="admin-tab-content">
-                <div class="section-title">Tambah Menu Baru</div>
-                <div class="add-menu-box">
-                    <div class="form-group">
-                        <label style="font-size: 11px; font-weight: 700;">Nama Menu:</label>
-                        <input type="text" id="newMenuName" class="form-input" placeholder="Nama Menu">
-                    </div>
-                    <div class="form-group" style="display:flex; gap:6px;">
-                        <div style="width:60%;">
-                            <label style="font-size: 11px; font-weight: 700;">Harga:</label>
-                            <input type="text" id="newMenuPrice" class="form-input" placeholder="mis: 16K">
-                        </div>
-                        <div style="width:40%;">
-                            <label style="font-size: 11px; font-weight: 700;">Kategori:</label>
-                            <select id="newMenuCat" class="form-input">
-                                <option value="icecream">Ice Cream</option>
-                                <option value="fruittea">Fruit Tea</option>
-                                <option value="milktea">Milk Tea</option>
-                                <option value="coffee">Coffee</option>
-                                <option value="matcha">Matcha</option>
-                            </select>
-                        </div>
-                    </div>
-                    <div class="form-group">
-                        <label style="font-size: 11px; font-weight: 700;">Foto Produk:</label>
-                        <div class="preview-box" style="height: 120px;">
-                            <img id="previewNewMenu" src="" alt="Preview Menu" style="display: none;">
-                            <span id="placeholderMenuText" style="font-size: 11px; color: var(--text-muted);">Belum ada foto</span>
-                        </div>
-                        <input type="file" id="newMenuImgFile" accept="image/*" class="form-input" onchange="previewImageFile(this, 'previewNewMenu', 'placeholderMenuText')">
-                    </div>
-                    <button onclick="tambahMenuBaru()" class="btn btn-primary" style="background:#2e7d32;">Simpan & Tambah Menu</button>
-                </div>
-            </div>
-
-            <!-- TAB 4: PROMO & FOTO -->
+            <!-- TAB 2: PROMO & LOGO -->
             <div id="tabPromo" class="admin-tab-content">
                 <div class="section-title">Upload Foto Logo & Papan Promo</div>
                 <div class="card-box" style="margin-bottom: 15px;">
                     <label style="font-size: 11px; font-weight: 700;">Upload Logo Header:</label>
                     <div class="preview-box" style="height: 100px;"><img id="previewHeaderLogo" src="" alt="Preview Logo"></div>
-                    <div class="form-group" style="margin-top: 4px;"><input type="file" id="editHeaderLogoFile" accept="image/*" class="form-input" onchange="previewImage(this, 'previewHeaderLogo')"></div>
+                    <div class="form-group" style="margin-top: 4px;"><input type="file" id="editHeaderLogoFile" accept="image/*" class="form-input" onchange="previewImageWithZoom(this, 'previewHeaderLogo', 'zoomLogo')"></div>
+                    <div style="display: flex; align-items: center; gap: 8px; margin-bottom: 8px;">
+                        <label style="font-size: 10px; font-weight: 700;">Zoom:</label>
+                        <input type="range" id="zoomLogo" min="0.5" max="2" step="0.1" value="1" style="width: 100%;" oninput="adjustZoom('previewHeaderLogo', this.value)">
+                    </div>
                     <button onclick="simpanHeaderLogo()" class="btn btn-primary">Simpan Logo Header</button>
                 </div>
                 <div class="card-box">
                     <label style="font-size: 11px; font-weight: 700;">Upload Papan Promo:</label>
                     <div class="preview-box"><img id="previewPromoImg" src="" alt="Preview Promo"></div>
-                    <div class="form-group" style="margin-top: 4px;"><input type="file" id="editPromoFile" accept="image/*" class="form-input" onchange="previewImage(this, 'previewPromoImg')"></div>
+                    <div class="form-group" style="margin-top: 4px;"><input type="file" id="editPromoFile" accept="image/*" class="form-input" onchange="previewImageWithZoom(this, 'previewPromoImg', 'zoomPromo')"></div>
+                    <div style="display: flex; align-items: center; gap: 8px; margin-bottom: 8px;">
+                        <label style="font-size: 10px; font-weight: 700;">Zoom:</label>
+                        <input type="range" id="zoomPromo" min="0.5" max="2" step="0.1" value="1" style="width: 100%;" oninput="adjustZoom('previewPromoImg', this.value)">
+                    </div>
                     <button onclick="simpanPromo()" class="btn btn-primary">Simpan Papan Promo</button>
                 </div>
             </div>
 
-            <!-- TAB 5: SETELAN & PIN -->
+            <!-- TAB 3: SETELAN & PIN -->
             <div id="tabSetting" class="admin-tab-content">
                 <div class="section-title">Atur Link Sosmed & PIN Admin</div>
                 <div class="card-box">
@@ -366,18 +298,6 @@
     firebase.initializeApp(firebaseConfig);
     const db = firebase.firestore();
 
-    const fallbackImg = "data:image/svg+xml;utf8,<svg xmlns='http://www.w3.org/2000/svg' width='100' height='100' viewBox='0 0 24 24' fill='none' stroke='%23d32f2f' stroke-width='2'><rect x='3' y='3' width='18' height='18' rx='2'/><circle cx='8.5' cy='8.5' r='1.5'/><polyline points='21 15 16 10 5 21'/></svg>";
-    
-    const defaultMenu = [
-        { id: 1, name: "Mixue Ice Cream Cone", price: "8K", oldPrice: "", cat: "icecream", ready: true, bestseller: true, promo: false, img: "https://via.placeholder.com/150/d32f2f/ffffff?text=Cone" },
-        { id: 2, name: "Boba Sundae", price: "16K", oldPrice: "18K", cat: "icecream", ready: true, bestseller: true, promo: true, img: "https://via.placeholder.com/150/d32f2f/ffffff?text=Boba+Sundae" },
-        { id: 10, name: "Fresh Squeezed Lemonade", price: "10K", oldPrice: "", cat: "fruittea", ready: true, bestseller: true, promo: false, img: "https://via.placeholder.com/150/ffb300/ffffff?text=Lemonade" },
-        { id: 20, name: "Pearl Milk Tea", price: "19K", oldPrice: "", cat: "milktea", ready: true, bestseller: true, promo: false, img: "https://via.placeholder.com/150/702313/ffffff?text=Milk+Tea" },
-        { id: 35, name: "Americano Coffee", price: "12K", oldPrice: "", cat: "coffee", ready: true, bestseller: false, promo: false, img: "https://via.placeholder.com/150/2b2927/ffffff?text=Americano" },
-        { id: 40, name: "Matcha Red Bean Sundae", price: "18K", oldPrice: "", cat: "matcha", ready: true, bestseller: true, promo: false, img: "https://via.placeholder.com/150/2e7d32/ffffff?text=Matcha" }
-    ];
-
-    let menuData = [];
     let configData = {};
     let currentAdminPin = "1624";
     let isMusicPlaying = false;
@@ -416,10 +336,10 @@
         if (doc.exists) {
             configData = doc.data();
             if(configData.adminPin) currentAdminPin = configData.adminPin;
-            if(configData.audioData) {
+            if(configData.audioUrl) {
                 const audio = document.getElementById('bgMusic');
-                if(audio.src !== configData.audioData) {
-                    audio.src = configData.audioData;
+                if(audio.src !== configData.audioUrl) {
+                    audio.src = configData.audioUrl;
                     audio.load();
                 }
             }
@@ -430,27 +350,12 @@
                 promoImg: "https://via.placeholder.com/400x180/d32f2f/ffffff?text=Promo",
                 gmaps: "https://maps.google.com", ig: "https://instagram.com", tiktok: "https://tiktok.com",
                 adminPin: "1624",
-                audioData: ""
+                audioUrl: "https://files.freemusicarchive.org/storage-freemusicarchive-org/music/ccCommunity/Kevin_MacLeod/In_The_Field/Kevin_MacLeod_-_The_Ice_Giant.mp3"
             };
             db.collection("settings").doc("portalConfig").set(configData);
         }
         renderConfigView();
         isInitialLoaded = true;
-    });
-
-    db.collection("menus").get().then((snapshot) => {
-        if (snapshot.empty) {
-            defaultMenu.forEach(item => db.collection("menus").doc(String(item.id)).set(item));
-        }
-    });
-
-    db.collection("menus").onSnapshot((snapshot) => {
-        menuData = [];
-        snapshot.forEach(doc => menuData.push(doc.data()));
-        renderClientView();
-        if (document.getElementById('adminDashboard').style.display === 'block') {
-            renderAdminDashboard();
-        }
     });
 
     function renderConfigView() {
@@ -463,66 +368,29 @@
         document.getElementById('displayIG').href = configData.ig || '#';
         document.getElementById('displayTikTok').href = configData.tiktok || '#';
 
+        if(document.getElementById('editAudioUrl')) document.getElementById('editAudioUrl').value = configData.audioUrl || '';
         if(document.getElementById('previewQR')) document.getElementById('previewQR').src = configData.qr || 'qr-wifi.jpg';
         if(document.getElementById('previewHeaderLogo')) document.getElementById('previewHeaderLogo').src = configData.headerLogo || '';
         if(document.getElementById('previewPromoImg')) document.getElementById('previewPromoImg').src = configData.promoImg || '';
     }
 
-    function renderClientView() {
-        const featuredContainer = document.getElementById('featuredMenuList');
-        featuredContainer.innerHTML = '';
-        menuData.filter(i => i.bestseller || i.promo).slice(0, 8).forEach(item => {
-            const div = document.createElement('div');
-            div.className = 'menu-card';
-            div.innerHTML = `
-                ${item.bestseller ? '<span class="ribbon-bestseller">BEST SELLER</span>' : ''}
-                ${item.promo ? '<span class="ribbon-promo">PROMO</span>' : ''}
-                <img src="${item.img || fallbackImg}" onerror="this.src='${fallbackImg}'" class="menu-img">
-                <div class="menu-title">${item.name}</div>
-                <div>${item.oldPrice ? '<span class="old-price">Rp' + item.oldPrice + '</span>' : ''}<span class="menu-price">Rp${item.price}</span></div>
-                <span class="badge ${item.ready ? 'badge-success' : 'badge-danger'}">${item.ready ? 'Tersedia' : 'Habis'}</span>
-            `;
-            featuredContainer.appendChild(div);
-        });
-
-        const listContainer = document.getElementById('clientMenuList');
-        listContainer.innerHTML = '';
-        menuData.forEach(item => {
-            const div = document.createElement('div');
-            div.className = 'menu-card';
-            div.setAttribute('data-category', item.cat);
-            div.innerHTML = `
-                ${item.bestseller ? '<span class="ribbon-bestseller">BEST SELLER</span>' : ''}
-                ${item.promo ? '<span class="ribbon-promo">PROMO</span>' : ''}
-                <img src="${item.img || fallbackImg}" onerror="this.src='${fallbackImg}'" class="menu-img">
-                <div class="menu-title">${item.name}</div>
-                <div>${item.oldPrice ? '<span class="old-price">Rp' + item.oldPrice + '</span>' : ''}<span class="menu-price">Rp${item.price}</span></div>
-                <span class="badge ${item.ready ? 'badge-success' : 'badge-danger'}">${item.ready ? 'Tersedia' : 'Habis'}</span>
-            `;
-            listContainer.appendChild(div);
-        });
-    }
-
-    function previewImage(input, imgId) {
-        if (input.files && input.files[0]) {
-            const reader = new FileReader();
-            reader.onload = e => {
-                document.getElementById(imgId).src = e.target.result;
-            };
-            reader.readAsDataURL(input.files[0]);
-        }
-    }
-
-    function previewImageFile(input, imgId, textId) {
+    function previewImageWithZoom(input, imgId, zoomId) {
         if (input.files && input.files[0]) {
             const reader = new FileReader();
             reader.onload = e => {
                 const img = document.getElementById(imgId);
                 img.src = e.target.result;
-                img.style.display = "block";
-                document.getElementById(textId).style.display = "none";
+                document.getElementById(zoomId).value = 1;
+                img.style.transform = "scale(1)";
             };
             reader.readAsDataURL(input.files[0]);
+        }
+    }
+
+    function adjustZoom(imgId, scale) {
+        const img = document.getElementById(imgId);
+        if (img) {
+            img.style.transform = `scale(${scale})`;
         }
     }
 
@@ -535,19 +403,11 @@
         });
     }
 
-    function filterMenu(cat, el) {
-        document.querySelectorAll('.filter-chip').forEach(c => c.classList.remove('active'));
-        el.classList.add('active');
-        document.querySelectorAll('#clientMenuList .menu-card').forEach(item => {
-            item.style.display = (cat === 'all' || item.getAttribute('data-category') === cat) ? 'flex' : 'none';
-        });
-    }
-
     function kirimSaran(e) {
         e.preventDefault();
         const nama = document.getElementById('namaInput').value || 'Pelanggan';
         const pesan = document.getElementById('pesanInput').value;
-        window.open(`https://wa.me/6282241581066?text=` + encodeURIComponent(`Halo Customer Care Mixue Sukorejo, ada masukan dari ${nama}:\n\n"${pesan}"`), '_blank');
+        window.open(`https://wa.me/6282241581066?text=` + encodeURIComponent(`Halo Customer Care Mixue Sukorejo, ada masukan / komplain dari ${nama}:\n\n"${pesan}"`), '_blank');
     }
 
     function bukaAdmin() { 
@@ -565,7 +425,6 @@
         if (inputPin === currentAdminPin) {
             document.getElementById('loginSection').style.display = 'none';
             document.getElementById('adminDashboard').style.display = 'block';
-            renderAdminDashboard();
         } else { alert("PIN Admin Salah!"); }
     }
 
@@ -580,86 +439,7 @@
         btn.classList.add('active');
     }
 
-    function tambahMenuBaru() {
-        const name = document.getElementById('newMenuName').value.trim();
-        const price = document.getElementById('newMenuPrice').value.trim();
-        const cat = document.getElementById('newMenuCat').value;
-        const fileInput = document.getElementById('newMenuImgFile');
-        if (!name || !price) { alert("Nama Menu dan Harga wajib diisi!"); return; }
-        const id = Date.now();
-        if (fileInput.files && fileInput.files[0]) {
-            const reader = new FileReader();
-            reader.onload = e => simpanMenuFirestore(id, name, price, cat, e.target.result);
-            reader.readAsDataURL(fileInput.files[0]);
-        } else { simpanMenuFirestore(id, name, price, cat, fallbackImg); }
-    }
-
-    function simpanMenuFirestore(id, name, price, cat, img) {
-        db.collection("menus").doc(String(id)).set({ id, name, price, oldPrice: "", cat, ready: true, bestseller: false, promo: false, img }).then(() => {
-            document.getElementById('newMenuName').value = '';
-            document.getElementById('newMenuPrice').value = '';
-            document.getElementById('newMenuImgFile').value = '';
-            document.getElementById('previewNewMenu').style.display = 'none';
-            document.getElementById('placeholderMenuText').style.display = 'block';
-            alert("Menu berhasil ditambahkan!");
-            switchTab('tabEdit', document.querySelectorAll('.admin-tab-btn')[1]);
-        });
-    }
-
-    function hapusMenu(id) { if (confirm("Hapus menu ini?")) db.collection("menus").doc(String(id)).delete(); }
-
-    function renderAdminDashboard() {
-        document.getElementById('editSSID').value = configData.ssid || '';
-        document.getElementById('editPass').value = configData.pass || '';
-        document.getElementById('editGmaps').value = configData.gmaps || '';
-        document.getElementById('editIG').value = configData.ig || '';
-        document.getElementById('editTikTok').value = configData.tiktok || '';
-
-        const container = document.getElementById('adminMenuList');
-        container.innerHTML = '';
-
-        const categories = [
-            { key: 'icecream', label: 'Ice Cream' },
-            { key: 'fruittea', label: 'Fruit Tea' },
-            { key: 'milktea', label: 'Milk Tea' },
-            { key: 'coffee', label: 'Coffee' },
-            { key: 'matcha', label: 'Matcha' }
-        ];
-
-        categories.forEach(catObj => {
-            const filtered = menuData.filter(item => item.cat === catObj.key);
-            if (filtered.length > 0) {
-                let groupHTML = `<div class="admin-cat-group"><div class="admin-cat-title">${catObj.label}</div>`;
-                filtered.forEach(item => {
-                    groupHTML += `
-                        <div class="admin-card-item">
-                            <div style="font-size:12px; font-weight:700; margin-bottom:6px; display:flex; justify-content:space-between; align-items:center;">
-                                <span>${item.name}</span>
-                                <button onclick="hapusMenu(${item.id})" class="toggle-btn badge-danger">Hapus</button>
-                            </div>
-                            <div style="display:flex; gap:6px; margin-bottom:6px; align-items:center;">
-                                <label style="font-size:10px; font-weight:700;">Harga:</label>
-                                <input type="text" value="${item.price}" onchange="db.collection('menus').doc('${item.id}').update({price: this.value})" style="font-size:11px; padding:4px; border:1px solid #ccc; border-radius:4px; width:70px; font-weight:700; color:var(--primary);">
-                            </div>
-                            <div style="display:flex; gap:6px; margin-bottom:6px; flex-wrap:wrap;">
-                                <button onclick="db.collection('menus').doc('${item.id}').update({ready: ${!item.ready}})" class="toggle-btn ${item.ready ? 'badge-success' : 'badge-danger'}">${item.ready ? 'Ready' : 'Habis'}</button>
-                                <button onclick="db.collection('menus').doc('${item.id}').update({bestseller: ${!item.bestseller}})" class="toggle-btn ${item.bestseller ? 'btn-primary' : 'btn-outline'}">Bestseller</button>
-                                <button onclick="db.collection('menus').doc('${item.id}').update({promo: ${!item.promo}})" class="toggle-btn ${item.promo ? 'btn-danger' : 'btn-outline'}">Promo</button>
-                            </div>
-                            <div style="display:flex; gap:6px; margin-bottom:6px;">
-                                <input type="text" value="${item.oldPrice || ''}" placeholder="Harga Coret (mis: 16K)" onchange="db.collection('menus').doc('${item.id}').update({oldPrice: this.value})" style="font-size:10px; padding:4px; border:1px solid #ccc; border-radius:4px; width:50%;">
-                            </div>
-                            <input type="file" accept="image/*" onchange="const r=new FileReader(); r.onload=e=>db.collection('menus').doc('${item.id}').update({img: e.target.result}); r.readAsDataURL(this.files[0]);" style="font-size:10px;">
-                        </div>
-                    `;
-                });
-                groupHTML += `</div>`;
-                container.innerHTML += groupHTML;
-            }
-        });
-    }
-
-    // FUNGSI SIMPAN TERPISAH (MASING-MASING TOMBOL BERDIRI SENDIRI)
+    // FUNGSI SIMPAN TERPISAH
     function simpanWifiText() {
         if (!isInitialLoaded) return;
         const ssid = document.getElementById('editSSID').value;
@@ -680,16 +460,12 @@
         r.readAsDataURL(f);
     }
 
-    function simpanAudio() {
+    function simpanAudioUrl() {
         if (!isInitialLoaded) return;
-        const f = document.getElementById('editAudioFile').files[0];
-        if (!f) { alert("Pilih file MP3 terlebih dahulu!"); return; }
-        const r = new FileReader();
-        r.onload = e => {
-            db.collection("settings").doc("portalConfig").set({ audioData: e.target.result }, { merge: true })
-              .then(() => alert("Musik Audio Berhasil Disimpan!"));
-        };
-        r.readAsDataURL(f);
+        const audioUrl = document.getElementById('editAudioUrl').value.trim();
+        if (!audioUrl) { alert("Link URL Audio tidak boleh kosong!"); return; }
+        db.collection("settings").doc("portalConfig").set({ audioUrl }, { merge: true })
+          .then(() => alert("Link Audio Berhasil Disimpan!"));
     }
 
     function simpanHeaderLogo() {
