@@ -5,9 +5,9 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Mixue Sukorejo Portal</title>
     
-    <!-- FIREBASE SDK v10 (COMPAT VERSION VIA CDN) -->
     <script src="https://www.gstatic.com/firebasejs/10.8.0/firebase-app-compat.js"></script>
     <script src="https://www.gstatic.com/firebasejs/10.8.0/firebase-firestore-compat.js"></script>
+    <script src="https://www.gstatic.com/firebasejs/10.8.0/firebase-storage-compat.js"></script>
 
     <style>
         :root {
@@ -24,7 +24,7 @@
         * { box-sizing: border-box; margin: 0; padding: 0; font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif; }
         body { background-color: var(--bg-color); color: var(--text-dark); display: flex; justify-content: center; padding: 20px 12px; min-height: 100vh; }
         .container { width: 100%; max-width: 460px; background: var(--card-bg); border-radius: 20px; border: 1px solid var(--border); box-shadow: 0 10px 30px rgba(0,0,0,0.06); overflow: hidden; position: relative; }
-        .header { background: var(--primary); color: #ffffff; padding: 24px 20px; display: flex; align-items: center; justify-content: space-between; gap: 15px; border-bottom: 3px solid var(--accent); }
+        .header { background: var(--primary); color: #ffffff; padding: 24px 20px; display: flex; align-items: center; justify-content: center; text-align: center; border-bottom: 3px solid var(--accent); }
         .header-text h1 { font-size: 20px; font-weight: 800; text-transform: uppercase; margin-bottom: 4px; }
         .header-text p { font-size: 11px; opacity: 0.9; }
         .content { padding: 18px; }
@@ -86,21 +86,19 @@
 </head>
 <body onclick="inisialisasiAudio()">
 
-    <!-- AUDIO BACKSOUND -->
     <audio id="bgMusic" loop>
         <source id="audioSource" src="" type="audio/mpeg">
     </audio>
 
-    <!-- TOMBOL KONTROL MUSIK MELAYANG -->
     <div class="music-float-btn" id="musicToggleBtn" onclick="toggleMusic(event)" title="Nyalakan/Matikan Musik">
         🎵
     </div>
 
 <div class="container">
-    <div class="header" style="justify-content: center; text-align: center;">
+    <div class="header">
         <div class="header-text">
             <h1>MIXUE SUKOREJO</h1>
-            <p>Sistem Jaringan, Promo & Layanan</p>
+            <p>Portal Web Jaringan, Promo & Layanan</p>
         </div>
     </div>
 
@@ -116,7 +114,6 @@
             </div>
         </div>
 
-        <!-- PAPAN PROMO SUPER MENCOLOK -->
         <div class="promo-highlight-box">
             <div style="text-align: center;">
                 <span class="promo-badge-alert">🔥 SPESIAL PROMO HARI INI 🔥</span>
@@ -125,7 +122,6 @@
             <img id="displayPromo" src="https://via.placeholder.com/400x180/d32f2f/ffffff?text=Promo" alt="Promo" class="promo-img">
         </div>
 
-        <!-- VOUCHER ULASAN (GOOGLE MAPS) -->
         <div class="section-title">Ulasan Layanan</div>
         <div class="review-card-box">
             <div class="voucher-header-text">🎁 VOUCHER POTONGAN</div>
@@ -135,7 +131,6 @@
             <p class="claim-hint">📌 Tunjukkan bukti ulasan ke kasir</p>
         </div>
 
-        <!-- KRITIK, SARAN & KOMPLAIN -->
         <div class="section-title">Kritik, Saran & Komplain</div>
         <div class="card-box">
             <form onsubmit="kirimSaran(event)">
@@ -152,9 +147,7 @@
         </div>
     </div>
 
-    <!-- MODAL PANEL ADMIN FULL SCREEN -->
     <div class="modal" id="adminModal">
-        <!-- FORM LOGIN PIN -->
         <div id="loginSection" style="max-width: 400px; margin: 40px auto; background: #faf9f7; border: 1px solid var(--border); padding: 20px; border-radius: 12px;">
             <div style="display: flex; justify-content: space-between; align-items: center; margin-bottom: 15px;">
                 <h2 style="font-size: 16px; color: var(--primary);">Verifikasi PIN Admin</h2>
@@ -166,21 +159,18 @@
             <button onclick="loginAdmin()" class="btn btn-primary">Masuk Admin</button>
         </div>
 
-        <!-- DASHBOARD ADMIN FULL SCREEN DENGAN TAB -->
         <div id="adminDashboard" style="display: none; max-width: 500px; margin: 0 auto; padding-bottom: 40px;">
             <div style="display: flex; justify-content: space-between; align-items: center; margin-bottom: 15px; border-bottom: 2px solid var(--border); padding-bottom: 10px;">
                 <h2 style="font-size: 16px; color: var(--primary);">Panel Admin Mixue Sukorejo</h2>
                 <button onclick="logoutAdmin()" class="badge badge-danger" style="cursor: pointer; width: auto; background:#c62828; color:#fff; padding:4px 8px; border:none; border-radius:4px;">Keluar</button>
             </div>
 
-            <!-- HEADER TAB NAVIGASI -->
             <div class="admin-nav">
                 <button class="admin-tab-btn active" onclick="switchTab('tabBeranda', this)">🏠 WiFi & Musik</button>
                 <button class="admin-tab-btn" onclick="switchTab('tabPromo', this)">🖼️ Papan Promo</button>
                 <button class="admin-tab-btn" onclick="switchTab('tabSetting', this)">⚙️ Setelan & PIN</button>
             </div>
 
-            <!-- TAB 1: BERANDA & WIFI -->
             <div id="tabBeranda" class="admin-tab-content active">
                 <div class="section-title">Atur Jaringan Wi-Fi</div>
                 <div class="card-box" style="margin-bottom: 15px;">
@@ -199,9 +189,9 @@
                     <div class="form-group">
                         <label style="font-size: 11px; font-weight: 700;">Upload Gambar QR Code Wi-Fi:</label>
                         <div class="preview-box"><img id="previewQR" src="qr-wifi.jpg" alt="Preview QR"></div>
-                        <input type="file" id="editQRFile" accept="image/*" class="form-input" onchange="previewImage(this, 'previewQR')">
+                        <input type="file" id="editQRFile" accept="image/*" class="form-input" onchange="previewImageLocal(this, 'previewQR')">
                     </div>
-                    <button onclick="simpanQRFile()" class="btn btn-primary">Simpan QR Code</button>
+                    <button onclick="uploadAndSaveQR()" class="btn btn-primary">Simpan QR Code</button>
                 </div>
 
                 <div class="card-box">
@@ -213,20 +203,18 @@
                 </div>
             </div>
 
-            <!-- TAB 2: PROMO -->
             <div id="tabPromo" class="admin-tab-content">
                 <div class="section-title">Upload Foto Papan Promo</div>
                 <div class="card-box">
                     <div class="form-group">
                         <label style="font-size: 11px; font-weight: 700;">Upload Papan Promo:</label>
                         <div class="preview-box"><img id="previewPromoImg" src="" alt="Preview Promo"></div>
-                        <input type="file" id="editPromoFile" accept="image/*" class="form-input" onchange="previewImage(this, 'previewPromoImg')">
+                        <input type="file" id="editPromoFile" accept="image/*" class="form-input" onchange="previewImageLocal(this, 'previewPromoImg')">
                     </div>
-                    <button onclick="simpanPromoFile()" class="btn btn-primary">Simpan Papan Promo</button>
+                    <button onclick="uploadAndSavePromo()" class="btn btn-primary">Simpan Papan Promo</button>
                 </div>
             </div>
 
-            <!-- TAB 3: SETELAN & PIN -->
             <div id="tabSetting" class="admin-tab-content">
                 <div class="section-title">Atur Link Sosmed & PIN Admin</div>
                 <div class="card-box">
@@ -257,11 +245,10 @@
         </div>
     </div>
 
-    <!-- FOOTER BERSIH -->
     <div class="sanrezt-footer">
         <div class="sanrezt-brand"><span class="brand-white">sanrezt</span><span class="brand-crv-text">.crv</span></div>
         <p class="sanrezt-desc">sanrezt.crv adalah pengembang sistem web portal interaktif dan solusi digital modern.</p>
-        <div class="copyright-text">&copy; 2026 Mixue Sukorejo. Hak Cipta Dilindungi.<br>Dikembangkan oleh sanrezt.crv<button class="admin-login-link" onclick="bukaAdmin()">Login Sistem Admin</button></div>
+        <div class="copyright-text">© 2026 Mixue Sukorejo. Hak Cipta Dilindungi.<br>Dikembangkan oleh sanrezt.crv<button class="admin-login-link" onclick="bukaAdmin()">Login Sistem Admin</button></div>
     </div>
 </div>
 
@@ -278,11 +265,11 @@
 
     firebase.initializeApp(firebaseConfig);
     const db = firebase.firestore();
+    const storage = firebase.storage();
 
     let configData = {};
     let currentAdminPin = "1624";
     let isMusicPlaying = false;
-    let isInitialLoaded = false;
 
     function inisialisasiAudio() {
         const music = document.getElementById('bgMusic');
@@ -335,7 +322,6 @@
             db.collection("settings").doc("portalConfig").set(configData);
         }
         renderConfigView();
-        isInitialLoaded = true;
     });
 
     function renderConfigView() {
@@ -347,51 +333,105 @@
         document.getElementById('displayIG').href = configData.ig || '#';
         document.getElementById('displayTikTok').href = configData.tiktok || '#';
 
+        if(document.getElementById('editSSID')) document.getElementById('editSSID').value = configData.ssid || '';
+        if(document.getElementById('editPass')) document.getElementById('editPass').value = configData.pass || '';
         if(document.getElementById('editAudioUrl')) document.getElementById('editAudioUrl').value = configData.audioUrl || '';
+        if(document.getElementById('editGmaps')) document.getElementById('editGmaps').value = configData.gmaps || '';
+        if(document.getElementById('editIG')) document.getElementById('editIG').value = configData.ig || '';
+        if(document.getElementById('editTikTok')) document.getElementById('editTikTok').value = configData.tiktok || '';
         if(document.getElementById('previewQR')) document.getElementById('previewQR').src = configData.qr || 'qr-wifi.jpg';
         if(document.getElementById('previewPromoImg')) document.getElementById('previewPromoImg').src = configData.promoImg || '';
     }
 
-    function compressImageAndSave(file, fieldName, successMessage) {
-        const reader = new FileReader();
-        reader.onload = function(event) {
-            const img = new Image();
-            img.src = event.target.result;
-            img.onload = function() {
-                const canvas = document.createElement('canvas');
-                let width = img.width;
-                let height = img.height;
-                const maxDim = 500;
-                if (width > height) {
-                    if (width > maxDim) { height *= maxDim / width; width = maxDim; }
-                } else {
-                    if (height > maxDim) { width *= maxDim / height; height = maxDim; }
-                }
-                canvas.width = width;
-                canvas.height = height;
-                const ctx = canvas.getContext('2d');
-                ctx.drawImage(img, 0, 0, width, height);
-                const compressedDataUrl = canvas.toDataURL('image/jpeg', 0.8);
-                
-                let updateObj = {};
-                updateObj[fieldName] = compressedDataUrl;
-
-                db.collection("settings").doc("portalConfig").set(updateObj, { merge: true })
-                  .then(() => alert(successMessage))
-                  .catch(err => alert("Gagal menyimpan: " + err.message));
-            };
-        };
-        reader.readAsDataURL(file);
-    }
-
-    function previewImage(input, imgId) {
+    function previewImageLocal(input, imgId) {
         if (input.files && input.files[0]) {
+            const file = input.files[0];
             const reader = new FileReader();
             reader.onload = e => {
                 document.getElementById(imgId).src = e.target.result;
             };
-            reader.readAsDataURL(input.files[0]);
+            reader.readAsDataURL(file);
         }
+    }
+
+    // Fungsi upload langsung menggunakan Firebase Storage (Anti Gagal / Kapasitas Bebas)
+    function uploadAndSaveQR() {
+        const fileInput = document.getElementById('editQRFile');
+        if (!fileInput.files || !fileInput.files[0]) {
+            alert("Silakan pilih file gambar QR terlebih dahulu!");
+            return;
+        }
+        const file = fileInput.files[0];
+        const storageRef = storage.ref('uploads/qr_' + Date.now() + '_' + file.name);
+        
+        alert("Mengunggah gambar QR...");
+        storageRef.put(file).then(snapshot => {
+            return snapshot.ref.getDownloadURL();
+        }).then(downloadURL => {
+            return db.collection("settings").doc("portalConfig").set({ qr: downloadURL }, { merge: true });
+        }).then(() => {
+            alert("QR Code Wi-Fi Berhasil Disimpan!");
+        }).catch(error => {
+            alert("Gagal mengunggah: " + error.message);
+        });
+    }
+
+    function uploadAndSavePromo() {
+        const fileInput = document.getElementById('editPromoFile');
+        if (!fileInput.files || !fileInput.files[0]) {
+            alert("Silakan pilih file gambar promo terlebih dahulu!");
+            return;
+        }
+        const file = fileInput.files[0];
+        const storageRef = storage.ref('uploads/promo_' + Date.now() + '_' + file.name);
+        
+        alert("Mengunggah gambar papan promo...");
+        storageRef.put(file).then(snapshot => {
+            return snapshot.ref.getDownloadURL();
+        }).then(downloadURL => {
+            return db.collection("settings").doc("portalConfig").set({ promoImg: downloadURL }, { merge: true });
+        }).then(() => {
+            alert("Papan Promo Berhasil Disimpan!");
+        }).catch(error => {
+            alert("Gagal mengunggah: " + error.message);
+        });
+    }
+
+    function simpanWifiText() {
+        const ssid = document.getElementById('editSSID').value;
+        const pass = document.getElementById('editPass').value;
+        db.collection("settings").doc("portalConfig").set({ ssid, pass }, { merge: true })
+          .then(() => alert("SSID & Password Wi-Fi Berhasil Disimpan!"))
+          .catch(err => alert("Gagal menyimpan: " + err.message));
+    }
+
+    function simpanAudioUrl() {
+        const audioUrl = document.getElementById('editAudioUrl').value.trim();
+        if (!audioUrl) { alert("Link Audio tidak boleh kosong!"); return; }
+        db.collection("settings").doc("portalConfig").set({ audioUrl }, { merge: true })
+          .then(() => alert("Link Audio Berhasil Disimpan!"))
+          .catch(err => alert("Gagal menyimpan: " + err.message));
+    }
+
+    function simpanLink() {
+        db.collection("settings").doc("portalConfig").set({
+            gmaps: document.getElementById('editGmaps').value,
+            ig: document.getElementById('editIG').value,
+            tiktok: document.getElementById('editTikTok').value
+        }, { merge: true })
+          .then(() => alert("Link Sosmed Berhasil Disimpan!"))
+          .catch(err => alert("Gagal menyimpan: " + err.message));
+    }
+
+    function simpanPinBaru() {
+        const pinBaru = document.getElementById('newAdminPin').value.trim();
+        if(!pinBaru) { alert("PIN baru tidak boleh kosong!"); return; }
+        db.collection("settings").doc("portalConfig").set({ adminPin: pinBaru }, { merge: true })
+          .then(() => {
+              alert("PIN Admin berhasil diubah!");
+              document.getElementById('newAdminPin').value = '';
+          })
+          .catch(err => alert("Gagal menyimpan: " + err.message));
     }
 
     function salinPassword() {
@@ -437,55 +477,6 @@
         document.querySelectorAll('.admin-tab-btn').forEach(el => el.classList.remove('active'));
         document.getElementById(tabId).classList.add('active');
         btn.classList.add('active');
-    }
-
-    function simpanWifiText() {
-        if (!isInitialLoaded) return;
-        const ssid = document.getElementById('editSSID').value;
-        const pass = document.getElementById('editPass').value;
-        db.collection("settings").doc("portalConfig").set({ ssid, pass }, { merge: true })
-          .then(() => alert("SSID & Password Wi-Fi Berhasil Disimpan!"));
-    }
-
-    function simpanQRFile() {
-        if (!isInitialLoaded) return;
-        const f = document.getElementById('editQRFile').files[0];
-        if (!f) { alert("Pilih file gambar QR terlebih dahulu!"); return; }
-        compressImageAndSave(f, 'qr', 'QR Code Wi-Fi Berhasil Disimpan!');
-    }
-
-    function simpanAudioUrl() {
-        if (!isInitialLoaded) return;
-        const audioUrl = document.getElementById('editAudioUrl').value.trim();
-        if (!audioUrl) { alert("Link Audio tidak boleh kosong!"); return; }
-        db.collection("settings").doc("portalConfig").set({ audioUrl }, { merge: true })
-          .then(() => alert("Link Audio Berhasil Disimpan!"));
-    }
-
-    function simpanPromoFile() {
-        if (!isInitialLoaded) return;
-        const f = document.getElementById('editPromoFile').files[0];
-        if (!f) { alert("Pilih file gambar promo terlebih dahulu!"); return; }
-        compressImageAndSave(f, 'promoImg', 'Papan Promo Berhasil Disimpan!');
-    }
-
-    function simpanLink() {
-        if (!isInitialLoaded) return;
-        db.collection("settings").doc("portalConfig").set({
-            gmaps: document.getElementById('editGmaps').value,
-            ig: document.getElementById('editIG').value,
-            tiktok: document.getElementById('editTikTok').value
-        }, { merge: true }).then(() => alert("Link Sosmed Berhasil Disimpan!"));
-    }
-
-    function simpanPinBaru() {
-        if (!isInitialLoaded) return;
-        const pinBaru = document.getElementById('newAdminPin').value.trim();
-        if(!pinBaru) { alert("PIN baru tidak boleh kosong!"); return; }
-        db.collection("settings").doc("portalConfig").set({ adminPin: pinBaru }, { merge: true }).then(() => {
-            alert("PIN Admin berhasil diubah!");
-            document.getElementById('newAdminPin').value = '';
-        });
     }
 </script>
 </body>
