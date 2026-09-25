@@ -27,7 +27,6 @@
         .header { background: var(--primary); color: #ffffff; padding: 24px 20px; display: flex; align-items: center; justify-content: space-between; gap: 15px; border-bottom: 3px solid var(--accent); }
         .header-text h1 { font-size: 20px; font-weight: 800; text-transform: uppercase; margin-bottom: 4px; }
         .header-text p { font-size: 11px; opacity: 0.9; }
-        .header-logo { width: 46px; height: 46px; border-radius: 50%; object-fit: cover; border: 2px solid #ffffff; background: #ffffff; flex-shrink: 0; }
         .content { padding: 18px; }
         .section-title { font-size: 13px; font-weight: 800; text-transform: uppercase; letter-spacing: 1px; color: var(--primary); margin-bottom: 10px; text-align: center; }
         .card-box { background: #faf9f7; border: 1px solid var(--border); border-radius: 14px; padding: 16px; margin-bottom: 20px; }
@@ -81,8 +80,8 @@
         .admin-tab-content.active { display: block; }
         
         /* PREVIEW CONTAINER */
-        .preview-box { width: 100%; height: 150px; border: 2px dashed var(--border); border-radius: 8px; display: flex; align-items: center; justify-content: center; overflow: hidden; background: #f5f3ef; margin-bottom: 6px; position: relative; }
-        .preview-box img { max-width: 100%; max-height: 100%; object-fit: contain; transition: transform 0.2s ease; }
+        .preview-box { width: 100%; height: 140px; border: 2px dashed var(--border); border-radius: 8px; display: flex; align-items: center; justify-content: center; overflow: hidden; background: #f5f3ef; margin-bottom: 6px; position: relative; }
+        .preview-box img { max-width: 100%; max-height: 100%; object-fit: contain; }
     </style>
 </head>
 <body onclick="inisialisasiAudio()">
@@ -98,12 +97,11 @@
     </div>
 
 <div class="container">
-    <div class="header">
+    <div class="header" style="justify-content: center; text-align: center;">
         <div class="header-text">
             <h1>MIXUE SUKOREJO</h1>
             <p>Sistem Jaringan, Promo & Layanan</p>
         </div>
-        <img id="displayHeaderLogo" src="https://via.placeholder.com/80/ffffff/d32f2f?text=MX" alt="Logo" class="header-logo">
     </div>
 
     <div class="content" id="clientView">
@@ -178,7 +176,7 @@
             <!-- HEADER TAB NAVIGASI -->
             <div class="admin-nav">
                 <button class="admin-tab-btn active" onclick="switchTab('tabBeranda', this)">🏠 WiFi & Musik</button>
-                <button class="admin-tab-btn" onclick="switchTab('tabPromo', this)">🖼️ Logo & Promo</button>
+                <button class="admin-tab-btn" onclick="switchTab('tabPromo', this)">🖼️ Papan Promo</button>
                 <button class="admin-tab-btn" onclick="switchTab('tabSetting', this)">⚙️ Setelan & PIN</button>
             </div>
 
@@ -199,49 +197,32 @@
 
                 <div class="card-box" style="margin-bottom: 15px;">
                     <div class="form-group">
-                        <label style="font-size: 11px; font-weight: 700;">Upload QR Code Wi-Fi (Zoom):</label>
+                        <label style="font-size: 11px; font-weight: 700;">Upload Gambar QR Code Wi-Fi:</label>
                         <div class="preview-box"><img id="previewQR" src="qr-wifi.jpg" alt="Preview QR"></div>
-                        <input type="file" id="editQRFile" accept="image/*" class="form-input" onchange="previewImageWithZoom(this, 'previewQR', 'zoomQR')">
-                        <div style="display: flex; align-items: center; gap: 8px; margin-top: 6px;">
-                            <label style="font-size: 10px; font-weight: 700;">Zoom:</label>
-                            <input type="range" id="zoomQR" min="0.5" max="2" step="0.1" value="1" style="width: 100%;" oninput="adjustZoom('previewQR', this.value)">
-                        </div>
+                        <input type="file" id="editQRFile" accept="image/*" class="form-input" onchange="previewImage(this, 'previewQR')">
                     </div>
-                    <button onclick="simpanQR()" class="btn btn-primary">Simpan QR Code</button>
+                    <button onclick="simpanQRFile()" class="btn btn-primary">Simpan QR Code</button>
                 </div>
 
                 <div class="card-box">
                     <div class="form-group">
                         <label style="font-size: 11px; font-weight: 700;">Link URL Musik Backsound (.mp3):</label>
                         <input type="text" id="editAudioUrl" class="form-input" placeholder="https://domain.com/musik.mp3">
-                        <p style="font-size: 10px; color: var(--text-muted); margin-top: 4px;">Gunakan link URL langsung berformat MP3 agar musik stabil dan tidak hilang saat direfresh.</p>
                     </div>
                     <button onclick="simpanAudioUrl()" class="btn btn-primary">Simpan Link Audio</button>
                 </div>
             </div>
 
-            <!-- TAB 2: PROMO & LOGO -->
+            <!-- TAB 2: PROMO -->
             <div id="tabPromo" class="admin-tab-content">
-                <div class="section-title">Upload Foto Logo & Papan Promo</div>
-                <div class="card-box" style="margin-bottom: 15px;">
-                    <label style="font-size: 11px; font-weight: 700;">Upload Logo Header:</label>
-                    <div class="preview-box" style="height: 100px;"><img id="previewHeaderLogo" src="" alt="Preview Logo"></div>
-                    <div class="form-group" style="margin-top: 4px;"><input type="file" id="editHeaderLogoFile" accept="image/*" class="form-input" onchange="previewImageWithZoom(this, 'previewHeaderLogo', 'zoomLogo')"></div>
-                    <div style="display: flex; align-items: center; gap: 8px; margin-bottom: 8px;">
-                        <label style="font-size: 10px; font-weight: 700;">Zoom:</label>
-                        <input type="range" id="zoomLogo" min="0.5" max="2" step="0.1" value="1" style="width: 100%;" oninput="adjustZoom('previewHeaderLogo', this.value)">
-                    </div>
-                    <button onclick="simpanHeaderLogo()" class="btn btn-primary">Simpan Logo Header</button>
-                </div>
+                <div class="section-title">Upload Foto Papan Promo</div>
                 <div class="card-box">
-                    <label style="font-size: 11px; font-weight: 700;">Upload Papan Promo:</label>
-                    <div class="preview-box"><img id="previewPromoImg" src="" alt="Preview Promo"></div>
-                    <div class="form-group" style="margin-top: 4px;"><input type="file" id="editPromoFile" accept="image/*" class="form-input" onchange="previewImageWithZoom(this, 'previewPromoImg', 'zoomPromo')"></div>
-                    <div style="display: flex; align-items: center; gap: 8px; margin-bottom: 8px;">
-                        <label style="font-size: 10px; font-weight: 700;">Zoom:</label>
-                        <input type="range" id="zoomPromo" min="0.5" max="2" step="0.1" value="1" style="width: 100%;" oninput="adjustZoom('previewPromoImg', this.value)">
+                    <div class="form-group">
+                        <label style="font-size: 11px; font-weight: 700;">Upload Papan Promo:</label>
+                        <div class="preview-box"><img id="previewPromoImg" src="" alt="Preview Promo"></div>
+                        <input type="file" id="editPromoFile" accept="image/*" class="form-input" onchange="previewImage(this, 'previewPromoImg')">
                     </div>
-                    <button onclick="simpanPromo()" class="btn btn-primary">Simpan Papan Promo</button>
+                    <button onclick="simpanPromoFile()" class="btn btn-primary">Simpan Papan Promo</button>
                 </div>
             </div>
 
@@ -346,7 +327,6 @@
         } else {
             configData = {
                 ssid: "PELANGGAN MIXUE FREE WIFI", pass: "kenangan#manis11", qr: "qr-wifi.jpg",
-                headerLogo: "https://via.placeholder.com/80/ffffff/d32f2f?text=MX",
                 promoImg: "https://via.placeholder.com/400x180/d32f2f/ffffff?text=Promo",
                 gmaps: "https://maps.google.com", ig: "https://instagram.com", tiktok: "https://tiktok.com",
                 adminPin: "1624",
@@ -362,7 +342,6 @@
         document.getElementById('displaySSID').innerText = configData.ssid || '-';
         document.getElementById('displayPass').innerText = configData.pass || '-';
         document.getElementById('displayQR').src = configData.qr || 'qr-wifi.jpg';
-        document.getElementById('displayHeaderLogo').src = configData.headerLogo || '';
         document.getElementById('displayPromo').src = configData.promoImg || '';
         document.getElementById('displayGmaps').href = configData.gmaps || '#';
         document.getElementById('displayIG').href = configData.ig || '#';
@@ -370,27 +349,48 @@
 
         if(document.getElementById('editAudioUrl')) document.getElementById('editAudioUrl').value = configData.audioUrl || '';
         if(document.getElementById('previewQR')) document.getElementById('previewQR').src = configData.qr || 'qr-wifi.jpg';
-        if(document.getElementById('previewHeaderLogo')) document.getElementById('previewHeaderLogo').src = configData.headerLogo || '';
         if(document.getElementById('previewPromoImg')) document.getElementById('previewPromoImg').src = configData.promoImg || '';
     }
 
-    function previewImageWithZoom(input, imgId, zoomId) {
+    function compressImageAndSave(file, fieldName, successMessage) {
+        const reader = new FileReader();
+        reader.onload = function(event) {
+            const img = new Image();
+            img.src = event.target.result;
+            img.onload = function() {
+                const canvas = document.createElement('canvas');
+                let width = img.width;
+                let height = img.height;
+                const maxDim = 500;
+                if (width > height) {
+                    if (width > maxDim) { height *= maxDim / width; width = maxDim; }
+                } else {
+                    if (height > maxDim) { width *= maxDim / height; height = maxDim; }
+                }
+                canvas.width = width;
+                canvas.height = height;
+                const ctx = canvas.getContext('2d');
+                ctx.drawImage(img, 0, 0, width, height);
+                const compressedDataUrl = canvas.toDataURL('image/jpeg', 0.8);
+                
+                let updateObj = {};
+                updateObj[fieldName] = compressedDataUrl;
+
+                db.collection("settings").doc("portalConfig").set(updateObj, { merge: true })
+                  .then(() => alert(successMessage))
+                  .catch(err => alert("Gagal menyimpan: " + err.message));
+            };
+        };
+        reader.readAsDataURL(file);
+    }
+
+    function previewImage(input, imgId) {
         if (input.files && input.files[0]) {
             const reader = new FileReader();
             reader.onload = e => {
-                const img = document.getElementById(imgId);
-                img.src = e.target.result;
-                document.getElementById(zoomId).value = 1;
-                img.style.transform = "scale(1)";
+                document.getElementById(imgId).src = e.target.result;
             };
             reader.readAsDataURL(input.files[0]);
-        }
-    }
-
-    function adjustZoom(imgId, scale) {
-        const img = document.getElementById(imgId);
-        if (img) {
-            img.style.transform = `scale(${scale})`;
         }
     }
 
@@ -439,7 +439,6 @@
         btn.classList.add('active');
     }
 
-    // FUNGSI SIMPAN TERPISAH
     function simpanWifiText() {
         if (!isInitialLoaded) return;
         const ssid = document.getElementById('editSSID').value;
@@ -448,48 +447,26 @@
           .then(() => alert("SSID & Password Wi-Fi Berhasil Disimpan!"));
     }
 
-    function simpanQR() {
+    function simpanQRFile() {
         if (!isInitialLoaded) return;
         const f = document.getElementById('editQRFile').files[0];
-        if (!f) { alert("Pilih file QR terlebih dahulu!"); return; }
-        const r = new FileReader();
-        r.onload = e => {
-            db.collection("settings").doc("portalConfig").set({ qr: e.target.result }, { merge: true })
-              .then(() => alert("QR Code Wi-Fi Berhasil Disimpan!"));
-        };
-        r.readAsDataURL(f);
+        if (!f) { alert("Pilih file gambar QR terlebih dahulu!"); return; }
+        compressImageAndSave(f, 'qr', 'QR Code Wi-Fi Berhasil Disimpan!');
     }
 
     function simpanAudioUrl() {
         if (!isInitialLoaded) return;
         const audioUrl = document.getElementById('editAudioUrl').value.trim();
-        if (!audioUrl) { alert("Link URL Audio tidak boleh kosong!"); return; }
+        if (!audioUrl) { alert("Link Audio tidak boleh kosong!"); return; }
         db.collection("settings").doc("portalConfig").set({ audioUrl }, { merge: true })
           .then(() => alert("Link Audio Berhasil Disimpan!"));
     }
 
-    function simpanHeaderLogo() {
-        if (!isInitialLoaded) return;
-        const f = document.getElementById('editHeaderLogoFile').files[0];
-        if (!f) { alert("Pilih file logo terlebih dahulu!"); return; }
-        const r = new FileReader();
-        r.onload = e => {
-            db.collection("settings").doc("portalConfig").set({ headerLogo: e.target.result }, { merge: true })
-              .then(() => alert("Logo Header Berhasil Disimpan!"));
-        };
-        r.readAsDataURL(f);
-    }
-
-    function simpanPromo() {
+    function simpanPromoFile() {
         if (!isInitialLoaded) return;
         const f = document.getElementById('editPromoFile').files[0];
-        if (!f) { alert("Pilih file promo terlebih dahulu!"); return; }
-        const r = new FileReader();
-        r.onload = e => {
-            db.collection("settings").doc("portalConfig").set({ promoImg: e.target.result }, { merge: true })
-              .then(() => alert("Papan Promo Berhasil Disimpan!"));
-        };
-        r.readAsDataURL(f);
+        if (!f) { alert("Pilih file gambar promo terlebih dahulu!"); return; }
+        compressImageAndSave(f, 'promoImg', 'Papan Promo Berhasil Disimpan!');
     }
 
     function simpanLink() {
